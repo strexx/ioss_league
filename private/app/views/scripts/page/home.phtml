@@ -1,3 +1,5 @@
+ <?php $db = Zend_Registry::get('db'); ?>
+ 
  <div id="myCarousel" class="carousel slide">
 
           <div class="carousel-inner">
@@ -71,55 +73,17 @@
                 </thead>
 
                 <tbody>
+				
+				<?php 
+					$players = $db->fetchAll('SELECT * FROM players ORDER BY goals DESC LIMIT 10');
+					foreach($players as $player):
+				?>
                     <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-				  
-                     <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
+                      <td><?php echo $player['name'] ?></td>
+                      <td><?php echo $player['goals'] ?></td>
                     </tr>
 					
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
+				<?php endforeach; ?>
 
                 </tbody>
 
@@ -143,55 +107,16 @@
 
                 <tbody>
 				
-				    <tr>
-                      <td>-</td>
-                      <td>-</td>
+				<?php 
+					$players = $db->fetchAll('SELECT * FROM players ORDER BY assists DESC LIMIT 10');
+					foreach($players as $player):
+				?>
+                    <tr>
+                      <td><?php echo $player['name'] ?></td>
+                      <td><?php echo $player['assists'] ?></td>
                     </tr>
 					
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                  
-                     <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-					
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
+				<?php endforeach; ?>
 
                 </tbody>
 
@@ -214,55 +139,16 @@
 
                 <tbody>
 				
-				    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                  
-                     <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
+				<?php 
+					$players = $db->fetchAll('SELECT * FROM players ORDER BY passes DESC LIMIT 10');
+					foreach($players as $player):
+				?>
                     <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
+                      <td><?php echo $player['name'] ?></td>
+                      <td><?php echo $player['passes'] ?></td>
                     </tr>
 					
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
+				<?php endforeach; ?>
 
                 </tbody>
 
@@ -285,55 +171,16 @@
 
                 <tbody>
                   
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-				  
-                     <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
+				<?php 
+					$players = $db->fetchAll('SELECT * FROM players ORDER BY interceptions DESC LIMIT 10');
+					foreach($players as $player):
+				?>
                     <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-							
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
+                      <td><?php echo $player['name'] ?></td>
+                      <td><?php echo $player['interceptions'] ?></td>
                     </tr>
 					
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-					
-					<tr>
-					  <td>-</td>
-					  <td>-</td>
-					</tr>
+				<?php endforeach; ?>
 
                 </tbody>
 
@@ -357,55 +204,16 @@
 
                 <tbody>
 				
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                  
-                     <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
+				<?php 
+					$players = $db->fetchAll('SELECT * FROM players ORDER BY saves DESC LIMIT 10');
+					foreach($players as $player):
+				?>
                     <tr>
-                      <td>-</td>
-                      <td>-</td>
+                      <td><?php echo $player['name'] ?></td>
+                      <td><?php echo $player['saves'] ?></td>
                     </tr>
 					
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-					
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-						
-				    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-						
-                    <tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-					
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-					
-					<tr>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
+				<?php endforeach; ?>
 
                 </tbody>
 
