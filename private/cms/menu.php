@@ -48,5 +48,12 @@ return array(
                 'list' => 'Overview',
                 'add' => 'Add',
 	    )
+	),
+	
+		'json' => array(
+	    'name'  => 'Match upload',
+	    'items' => array(
+                'upload' => 'Upload JSON'
+	    )
 	)
 );
