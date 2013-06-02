@@ -1,0 +1,94 @@
+<?php
+    $config = Zend_Registry::get('config');
+    $request = Zend_Controller_Front::getInstance()->getRequest();
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <base href="<?= $config->baseurl; ?>" />
+    <title>International Online Soccer League</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/reset.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+
+    <!-- Le fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
+
+    <!-- Le bootstrap -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <div id="container">
+
+      <div class="top">
+
+        <h1 class="logo">IOS League #1</h1>
+
+      </div>
+
+      <div id="menu">
+
+        <ul class="nav">
+
+          <li><a href="<?= $config->baseurl; ?>">Home</a></li>
+          <li><a href="news">News</a></li>
+          <li><a href="clubs">Teams</a></li>
+          <li><a href="players">Players</a></li>
+          <li><a href="schedules">Schedules</a></li>
+          <li><a href="standings">Standings</a></li>
+          <li><a href="cup">Cup</a></li>
+          <li><a href="transfers">Transfers</a></li>
+          <li><a href="rules">Rules</a></li>
+		  <li><a href="">Livestream</a></li>
+		  <li><a href="">Servers</a></li>
+          <li><a href="irc">IRC</a></li>
+          <li><a href="poll">Poll</a></li>
+
+        </ul>
+
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <?php echo $this->layout()->content; ?>
+
+      </div>      
+
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+
+    <script type="text/javascript">
+
+    var menu = document.getElementById("menu");
+    var page = menu.getElementsByTagName("a");
+    var current = '<?= $config->baseurl . $request->action ?>';
+
+    for(var i = 0; i < page.length; i++) {
+      if(page[i].href == current) {
+        page[i].className = 'current';
+      }
+    }
+
+    </script>
+
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+    <!-- Placed at the end of the document so the pages load faster -->
+
+
+  </body>
+</html>

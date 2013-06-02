@@ -1,0 +1,39 @@
+<?php
+$this->layout()->title = $this->translate('Schedules overview');
+?>
+<section class=categories>
+    <table>
+        <thead>
+            <tr>
+                <th><?php echo $this->translate('Stage');?>
+				<th><?php echo $this->translate('Date');?>
+				<th><?php echo $this->translate('Home');?>
+				<th><?php echo $this->translate('Score');?>
+				<th><?php echo $this->translate('Away');?>
+				<th><?php echo $this->translate('Time');?>
+				<th><?php echo $this->translate('Admin');?>
+                <th width="90">Active
+                <th width="50">&nbsp;
+                <th width="50">&nbsp;
+        </thead>
+        <tbody>
+            <?php 
+            $items = $this->items;
+            foreach($items as $i => $item):?>
+            <tr>
+                <td><?php echo $item['stage']; ?></td>
+				<td><?php echo $item['date']; ?></td>
+				<td><?php echo $item['hometeam']; ?></td>
+				<td><?php echo $item['score']; ?></td>
+				<td><?php echo $item['awayteam']; ?></td>
+				<td><?php echo $item['time']; ?></td>
+				<td><?php echo $item['admin']; ?></td>
+                <td><a href="<?php echo $this->url(array('action' => 'edit', 'id' => $item['id'])) ?>"><?php echo $this->translate('Update');?></a></td>
+                <td class=delete><a href="<?php echo $this->url(array('action' => 'delete', 'id' => $item['id'])) ?>"><?php echo $this->translate('Delete');?></a></td>
+            </tr>
+            <?php
+            endforeach;
+            ?>
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,69 @@
+<div class="playerlist">
+	<table class="tablesorter" cellspacing="1">             
+		<thead>
+			<tr> 
+				<th class="headSort header headerSortDown">Player&nbsp;</th> 
+				<th class="headSort header">Team</th> 
+				<th class="headSort header">Games</th> 
+				<th class="headSort header">Goals</th> 
+				<th class="headSort header">Assists</th>
+				<th class="headSort header">Shots</th>
+				<th class="headSort header">Shots(ot)</th>
+				<th class="headSort header">Passes</th>
+				<th class="headSort header">Passes(c)</th>
+				<th class="headSort header">Interc.</th>
+				<th class="headSort header">Saves</th>
+				<th class="headSort header">Fouls</th>
+				<th class="headSort header">Fouls(s)</th>
+				<th class="headSort header">Yellow</th>
+				<th class="headSort header">Red</th>
+				<th class="headSort header">MotM</th>
+			</tr> 
+		</thead> 
+		<tbody> 
+		
+		<?php 
+		$db = Zend_Registry::get('db');
+		foreach( $this->players as $player ):
+			
+			$q = $db->prepare('SELECT club FROM clubs WHERE id = :club_id');
+			$q->bindValue(':club_id', $player['club_id']);
+        	$q->execute();
+        
+        	$club = $q->fetch(PDO::FETCH_ASSOC);
+			
+			echo'<tr> 
+					<td>' . $player['name'] . '</td> 
+					<td>' . $club['club'] . '</td> 
+					<td>' . $player['games'] . '</td> 
+					<td>' . $player['goals'] . '</td> 
+					<td>' . $player['assists'] . '</td> 
+					<td>' . $player['shots'] . '</td>
+					<td>' . $player['shotsot'] . '</td>				
+					<td>' . $player['passes'] . '</td>
+					<td>' . $player['passescp'] . '</td>
+					<td>' . $player['interceptions'] . '</td>
+					<td>' . $player['saves'] . '</td>
+					<td>' . $player['fouls'] . '</td>
+					<td>' . $player['foulssuf'] . '</td>
+					<td>' . $player['ycards'] . '</td>
+					<td>' . $player['rcards'] . '</td>	
+					<td>' . $player['motm'] . '</td>
+			</tr>';
+		endforeach;
+		?> 
+	</table>			
+</div>
+
+<script type="text/javascript">
+
+$(function() {
+    $("table").tablesorter({ 
+        // sort on the first column and third column, order asc 
+        sortList: [[0,0],[0,0]] 
+    }); 
+});
+
+</script>
+
+<script type="text/javascript" src="assets/js/jquery.tablesorter.js"></script> 

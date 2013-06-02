@@ -1,0 +1,544 @@
+/* 
+    Document   : main
+    Created on : 26-aug-2010, 10:04:52
+    Author     : Bas
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body {
+    background: #f3f3f3;
+    padding: 15px;
+    font-family: Arial;
+    font-size: 12px;
+    line-height: 16px;
+    color: #6f6f6f;
+}
+
+a {
+	text-decoration: none;
+}
+
+.list {
+	margin: 15px 0 0 0;
+}
+
+.print, .pdf {
+	cursor: pointer;
+	float: right;
+	font-weight: bold;
+	text-decoration: none;
+	margin-right: 15px;
+}
+
+.pdf img {
+	margin: 0 5px 0 0;
+}
+
+.print:hover {
+	text-decoration: underline;
+}
+
+a:focus {
+	outline: none;
+}
+
+.container {
+	position: relative;
+    padding: 15px;
+    background: #FFF;
+	min-height: 400px;
+    -moz-box-shadow: 0px 2px 10px #e5e5e5;
+    -webkit-box-shadow: 0px 2px 10px #e5e5e5;
+    box-shadow: 0px 2px 10px #e5e5e5;
+}
+
+.header {
+    background: url(../img/header-bg.jpg) repeat-x;
+    height: 111px;
+    width: 980px;
+    margin: -15px 0 1px -15px;
+	border-bottom: 3px solid #f99728;
+}
+
+.header h1 {
+	padding: 0;
+	margin: 0;
+}
+
+/*
+ * Logo
+*/
+
+#logo {
+    padding: 15px;
+    float: left;
+    border: none;
+    width: auto;
+}
+
+#logo a {
+    display: block;
+    height: 85px;
+    text-indent: -9999px;
+    width: 244px;
+    background: url(../img/logo-nl.png) no-repeat;
+}
+
+/*
+ * Menu
+*/
+ul.menu {
+    width: 690px;
+    height: 45px;
+	margin-top: -47px;
+    /*border-bottom: 3px solid #f99728;*/
+    padding: 0;
+	overflow: hidden;
+	float: right;
+}
+
+ul.menu li {
+    float: left;
+    list-style: none;
+    line-height: 45px;
+    padding-right: 20px;
+}
+
+ul.menu li.current a {
+    color: #f99728;
+}
+
+ul.menu li a {
+    display: block;
+    color: #6d6d6d;
+    font-size: 17px;
+    font-weight:normal;
+    text-decoration: none;
+    font-family: "Myriad Pro";
+}
+
+ul.menu li a.hover {
+    color: #f99728;
+    display: none;
+}
+
+ul.menu li:hover a.normal {
+    display: none;
+    visibility:hidden;
+}
+
+ul.menu li:hover a.hover {
+    display: block;
+}
+
+.flash {
+    text-align:right;
+    margin: 0;
+}
+
+/*
+ * Left, Right
+ * floats
+*/
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.item {
+    width: 735px;
+    margin-right: 15px;
+}
+
+.small-item {
+    width: 230px;
+    margin-right: 15px;
+}
+
+.last {
+    margin-right: 0;
+}
+
+.submenu {
+    width: 200px;
+}
+
+.submenu a {
+    display: block;
+    height: 40px;
+    text-decoration: none;
+	padding: 0 0 0 15px;
+}
+
+.submenu a:hover {
+    background:#f3f3f3;
+}
+
+.submenu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.submenu ul li {
+    line-height: 40px;
+    height: 40px;
+    border-top: 1px solid #f3f3f3;
+    font-size: 12px;
+    list-style-image: none;
+}
+
+.submenu ul li a .icon {
+    float: right;
+    margin: 7px;
+    display: none;
+}
+
+.submenu ul li.active a .icon {
+    display: block;
+}
+
+.submenu ul li:hover {
+    border-top: 1px solid #FFF;
+}
+
+.submenu ul li ul {
+    display: none;
+}
+
+.submenu ul li ul li {
+    line-height: 40px;
+    height: 40px;
+    border-top: 1px solid #FFF;
+    font-size: 12px;
+    background: #f3f3f3;
+    font-weight: bold;
+}
+
+.submenu ul li ul li a{
+    width: 185px;
+    padding-left: 15px;
+}
+
+.submenu ul li.active {
+    color: #FFF;
+    font-weight: bold;
+    background: #01ae8a;
+    height: auto;
+    width: 185px;
+    padding-left: 15px;
+    border-top: 1px solid #FFF;
+}
+
+/* > verwijderen voor oranje bg */
+.submenu ul li.active:hover,  .submenu ul li.active > a:hover{
+    background: #01ae8a;
+    color: #FFF;
+}
+
+.submenu ul li.active a{
+    color: #FFF;
+	padding: 0 0 0 0;
+}
+
+.submenu ul li.active ul {
+    display: block;
+    margin-left: -15px;
+}
+
+.submenu ul li.active ul li a {
+    color: #707070;
+	padding: 0 0 0 15px;
+	white-space: nowrap;
+}
+
+.submenu ul li.last {
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.content {
+    width: 740px;
+    float: right;
+    margin: 10px 0 0 0;
+}
+
+/*
+ * Typography
+*/
+h3 {
+    color: #f99728;
+    font-size: 15px;
+    font-family: Arial;
+    margin-bottom: 5px;
+}
+
+h2 {
+    color: #f99728;
+    font-size: 20px;
+    line-height: 20px;
+    font-family: "Myriad Pro";
+	text-decoration: none;
+	margin: 8px 0 0 0;
+	padding: 0;
+}
+
+h1 {
+    color: #2c2c2c;
+    border-bottom: 1px solid #f99728;
+    width: 100%;
+    font-size: 22px;
+	line-height: 26px !important;	
+    /*padding-bottom: 10px;*/
+    margin: 8px 0px 6px 0px;
+	padding: 0;
+    font-family: "Myriad Pro";
+}
+
+	h1 span {
+		height: 10px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+/*
+ * Languages
+*/
+.languages {
+    padding: 15px;
+}
+
+a.language {
+    width: 16px;
+    height: 11px;
+    float: left;
+    text-indent: -9999px;
+    background: url(../img/languages.jpg);
+    margin-right: 10px;
+}
+
+a.language.dutch {
+    background-position: 0 0;
+}
+
+a.language.english {
+    background-position: 0 22px;
+}
+
+a.language.german {
+    background-position: 0 11px;
+    margin-right: 0px;
+}
+
+p {
+    margin-bottom: 10px;
+	line-height: 20px;
+}
+
+ul {
+    list-style-position: outside;
+    list-style-image: url(../img/list-image.jpg);
+	padding: 0 0 5px 18px;
+	margin: 0;
+}
+
+ul.links {
+    list-style-position: outside;
+    list-style-image: url(../img/list-image-arrow.png) !important;
+	padding: 0 0 5px 18px;
+	margin: 0;
+}
+
+ul li {
+    line-height: 24px;
+}
+
+ul li a {
+    text-decoration: underline;
+    color: #6f6f6f;
+}
+
+.clear { clear: both !important; }
+
+.group {
+	float: left !important;
+	width: 350px !important;
+}
+
+.group:nth-child(2n+1) {
+	clear: both;
+}
+
+	/* newsartikel */
+	.newsArticle {
+		display: block;
+		border-bottom: 1px solid #ccc;
+		padding: 5px 0 8px 0;
+		margin: 0 0 7px 0;
+	}
+
+	.newsArticle h2 {
+		color: #f99728;
+		font-size: 20px;
+		font-family: "Myriad Pro";
+		text-decoration: none;
+		margin: 0;
+		padding: 0;
+		line-height: 20px;
+	}
+	
+	.newsArticle h3 {
+		color: #6F6F6F;
+		font-size: 12px;
+		text-decoration: none;
+		padding: 0;
+		margin: 0;
+	}
+	
+	.newsArticle  p {
+		width: 650px;
+		line-height: 21px;
+		margin: 0;
+		padding: 0 0 3px 0;
+	}
+	
+	.newsArticle  a.lees-meer {
+		margin: 2px 0 0 0;
+		padding: 0;
+		text-decoration: underline;
+		color: #333;
+	}
+	
+		.newsArticle  a.lees-meer:hover {
+			text-decoration: none;
+		}
+	
+
+.breadcrumb {
+    margin: 10px 0 0 0;
+}
+
+.breadcrumb a {
+    text-decoration: underline;
+    color: #6f6f6f;
+    font-size: 12px;
+}
+
+.breadcrumb a.active {
+    color: #f99728;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.content-image {
+    border-bottom: 3px solid #f99728;
+    padding: 2px 0;
+}
+
+
+/* content */
+
+#contentPage {
+	margin: 0;
+	padding: 5px 0 0 0;
+}
+
+	#contentPage a {
+		text-decoration: underline;
+		color: #6F6F6F;
+	}
+
+		#contentPage a:hover {
+			text-decoration: none;
+			color: #6F6F6F;
+		}
+
+	#contentPage ol {
+		margin: 0 0 0 15px;
+		padding: 0 0 0 0;
+	}
+
+		#contentPage ol li {
+			margin: 0 0 0 0;
+			padding: 4px 0 4px 2px;
+		}
+
+
+/*
+ * Footer
+*/
+.footer {
+    padding: 15px;
+    width: 950px;
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+.footer .sep {
+    margin: 0 10px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #6f6f6f;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+a.orange {
+    text-decoration: underline;
+    color: #f99728;
+}
+
+.searchbox {
+    float: right;
+    margin-top: -90px;
+    margin-right: 106px;
+}
+
+.searchbox .txt {
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    border: 1px solid #dbdbdb;
+    width: 150px;
+    height: 25px;
+}
+
+.searchbox .button {
+    border: none;
+    width: 58px;
+    height: 25px;
+    margin-left: 15px;
+    background: url(../img/search-button.jpg) no-repeat;
+    cursor:pointer;
+	line-height: 27px;
+}
+
+.menu_l {
+	float: left;
+	width: 200px;
+	position: absolute;
+	top: 110px;
+}
+
+.print {
+	position: absolute;
+	top: 30px;
+	right: 330px;
+}
+
+.block {
+	width: 325px;
+	height: 255px;
+	float: left;
+}

@@ -1,0 +1,114 @@
+<table class="table schedules">
+	<thead>
+		<tr class="week" ><td colspan="6">Quarter Final</td></tr>
+			<tr>
+				<th>Date</th>
+				<th>Home</th>
+				<th>Score</th>
+				<th>Away</th>
+				<th>Time (CEST)</th>
+				<th>Admin</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+			<?php 	
+			$db = Zend_Registry::get('db');
+
+			$q = $db->prepare('SELECT * FROM schedules WHERE stage="Quarter Final"');
+			$q->execute();
+			$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+			foreach($schedules as $schedule):
+
+			?>
+		
+			<tr> 
+					<td><?php echo $schedule['date'] ?></td> 
+					<td><?php echo $schedule['hometeam'] ?></td> 
+					<td><?php echo $schedule['score'] ?></td> 
+					<td><?php echo $schedule['awayteam'] ?></td> 
+					<td><?php echo $schedule['time'] ?></td> 
+					<td><?php echo $schedule['admin'] ?></td>
+			</tr>
+
+			<?php endforeach; ?>
+	</body>		
+</table>
+
+<table class="table schedules">
+	<thead>
+		<tr class="week" ><td colspan="6">Semi Final</td></tr>
+			<tr>
+				<th>Date</th>
+				<th>Home</th>
+				<th>Score</th>
+				<th>Away</th>
+				<th>Time (CEST)</th>
+				<th>Admin</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+			<?php 	
+			$db = Zend_Registry::get('db');
+
+			$q = $db->prepare('SELECT * FROM schedules WHERE stage="Semi Final"');
+			$q->execute();
+			$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+			foreach($schedules as $schedule):
+
+			?>
+		
+			<tr> 
+					<td><?php echo $schedule['date'] ?></td> 
+					<td><?php echo $schedule['hometeam'] ?></td> 
+					<td><?php echo $schedule['score'] ?></td> 
+					<td><?php echo $schedule['awayteam'] ?></td> 
+					<td><?php echo $schedule['time'] ?></td> 
+					<td><?php echo $schedule['admin'] ?></td>
+			</tr>
+
+			<?php endforeach; ?>		
+	</body>		
+</table>
+
+
+<table class="table schedules">
+	<thead>
+		<tr class="week" ><td colspan="6">Final</td></tr>
+			<tr>
+				<th>Date</th>
+				<th>Home</th>
+				<th>Score</th>
+				<th>Away</th>
+				<th>Time (CEST)</th>
+				<th>Admin</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+			<?php 	
+			$db = Zend_Registry::get('db');
+
+			$q = $db->prepare('SELECT * FROM schedules WHERE stage="Final"');
+			$q->execute();
+			$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+			foreach($schedules as $schedule):
+
+			?>
+		
+			<tr> 
+					<td><?php echo $schedule['date'] ?></td> 
+					<td><?php echo $schedule['hometeam'] ?></td> 
+					<td><?php echo $schedule['score'] ?></td> 
+					<td><?php echo $schedule['awayteam'] ?></td> 
+					<td><?php echo $schedule['time'] ?></td> 
+					<td><?php echo $schedule['admin'] ?></td>
+			</tr>
+
+			<?php endforeach; ?>	
+	</body>		
+</table>

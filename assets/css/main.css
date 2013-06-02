@@ -1,0 +1,717 @@
+@font-face {
+    font-family:'Bebas';
+    src: url('../fonts/BEBAS___-webfont.eot');
+    src: url('../fonts/BEBAS___-webfont?#iefix') 
+    format('embedded-opentype'), url('../fonts/BEBAS___-webfont.woff') 
+    format('woff'),url('../fonts/BEBAS___-webfont.ttf') 
+    format('truetype'), url('../fonts/BEBAS___-webfont.svg#Bebas') 
+    format('svg');
+    font-weight: normal;
+    font-style: normal
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('../img/body-background.jpg') no-repeat #000;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+ 
+.clearfix {
+    display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+    display: block;
+}
+ 
+* html .clearfix {
+    height: 1%;
+}
+
+#container {
+    width: 980px;
+    margin: 20px auto;
+}
+
+    #container .top {
+        height: 70px;
+        background: #000 url('../img/menu-top-bg.png') repeat-x;
+        border-top-left-radius: 4px;
+        -moz-border-radius-top-left: 4px;
+        -moz-border-radius-top-right: 4px;
+        -webkit-border-radius-top-left: 4px;
+        -webkit-border-top-right-radius: 4px;
+    }
+
+        #container .top .logo {
+            padding: 15px 0 0 0;
+            font-size: 40px;
+            font-family: 'Bebas', cursive;
+            color: white;
+            text-align: center;
+            text-transform: uppercase;
+            background: -webkit-linear-gradient(#fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+        }
+
+    #menu {
+        margin: 0 0 30px 0;
+        height: 56px;
+        display: table;
+        font-family: 'Bebas', cursive;
+    }
+
+        #menu .nav {
+            list-style: none;
+        }
+
+        #menu .nav li:first-child {
+            border-left: none;
+        }
+
+        #menu .nav li:last-child {
+            border-right: none;
+        }
+
+        #menu .nav li {
+            float: left;
+            text-align: center;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+        }
+
+        #menu .nav li a {
+            display: block;
+            background: url('../img/menu-top-bg-2.png') repeat-x;
+            padding: 20px 11.2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #40476b;
+        }
+
+        #menu .nav li a:hover {
+            background: url('../img/menu-top-bg.png') repeat-x;
+            color: white;
+        }
+
+        #menu .nav .dropdown {
+            background: url('../img/menu-top-dropdown.png'), url('../img/menu-top-bg-2.png');
+            background-position: 80px 25px, left top;
+            background-repeat: no-repeat, repeat-x;
+        }
+
+        #menu .nav .dropdown:hover {
+            background: url('../img/menu-top-dropdown.png'), url('../img/menu-top-bg.png');
+            background-position: 80px 25px, left top;
+            background-repeat: no-repeat, repeat-x;
+        }
+        #menu .nav .current {
+            background: url('../img/menu-top-bg.png') repeat-x;
+            color: white;
+        }
+
+    #content {
+        width: 980px;
+    }
+
+    #myCarousel {
+        border: none;
+    }
+
+    .carousel .left {
+        background: none;
+    }
+
+    .carousel .carousel-caption h4 {
+        font-family: 'Bebas', cursive;
+        font-size: 30px;
+        margin: 0 0 10px 0;
+        word-spacing: 5px;
+    }
+
+    .carousel .carousel-caption p {
+        font-family: calibri;
+        font-size: 14px;
+    }
+
+    #left {
+        width: 620px;
+        float: left;
+        margin: 0 50px 0 0;
+    }
+
+    .post {
+        width: 600px;
+        padding: 20px 10px;
+        background: rgba(22, 21, 21, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 8px;
+        margin: 0 0 30px 0;
+    }
+
+    .post img {
+        border: 3px solid #ccc;
+    }
+
+    .post h2 {
+        font-family: 'Bebas', cursive;
+        color: white;
+        margin: 0 0 10px 0;
+        word-spacing: 3px;
+    }
+
+    .post h2 span {
+        float: right;
+        display: none;
+        text-align: center;
+        padding: 6px 0 0 0;
+        margin: -5px 0 0 0;
+        width: 37px;
+        height: 31px;
+        background: url('../img/article-comment.png') no-repeat;
+        color: white;
+    }
+
+    .post p {
+        font-size: 14px;
+        font-family: calibri;
+    }
+
+    .post img { 
+        width: 202px;
+        height: 180px;
+    }
+
+    .post .description {
+        height: 110px;
+        margin: 0 0 10px 0;
+        color: #fff;
+    }
+
+    .post .read-more {
+        margin: 0;
+        width: 80px;
+        text-align: center;
+        background: url('../img/article-read-more.png') repeat-x;
+        color: white;
+        text-transform: lowercase;
+        display: block;
+        float: right;
+        font-family: 'Bebas', cursive;
+        font-size: 12px;
+        padding: 6px 5px;
+        border-radius: 5px;
+        word-spacing: 3px;
+    }
+
+    .post .posted-by {
+        font-size: 11px;
+        color: #ccc;
+        padding: 0 0 5px 0;
+        margin: 0 0 10px 0;
+        border-bottom: 1px solid;
+    }
+
+    .post-left {
+        width: 200px;
+        margin: 0 20px 0 0;
+        float: left;
+    }
+
+    .post-right {
+        width: 370px;
+        float: left;
+    }
+
+    .post .share {
+        position: absolute;
+        margin: 200px 0 0 0;
+        display: none;
+    }
+
+    .post .share li {
+        float: left;
+    }
+
+    .post .share .facebook {
+        display: none;
+        width: 30px;
+        height: 25px;
+        background: url('../img/article-facebook.png') no-repeat;
+    }
+
+    .post .share .twitter {
+        width: 30px;
+        height: 25px;
+        background: url('../img/article-twitter.png') no-repeat;
+    }
+
+    .post .share .more {
+        width: 30px;
+        height: 25px;
+        background: url('../img/article-more.png') no-repeat;
+    }
+
+    #right {
+        width: 310px;
+        float: left;
+    }
+        .statistics {
+            font-family: 'Bebas', cursive;
+            margin: 0;
+            background: url('../img/menu-top-bg.png') repeat-x;
+            border: none;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        .statistics li {
+            margin: 0;
+        }
+
+        .statistics li a {
+            margin: 0;
+            color: white;
+            background: url('../img/menu-top-bg.png') repeat-x;
+            border: none;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .statistics li a:first-child {
+            border-top-left-radius: 4px !important;
+            border-top-right-radius: 0;
+        }
+
+        .statistics li a:first-child:hover {
+            border-top-left-radius: 4px;
+            border-top-right-radius: 0;
+        }
+
+        .statistics li a:last-child {
+            border-top-left-radius: 0;
+            border-top-right-radius: 4px !important;
+        }
+        
+        .statistics li a:last-child:hover {
+            border: none;
+            border-top-left-radius: 0;
+            border-top-right-radius: 4px;
+        }
+
+        .statistics li a:hover {
+            background: none;
+        }
+
+        .statistics .active a {
+            color: #40476B;
+            background: url('../img/menu-top-bg-2.png') repeat-x;
+            border: none;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .statistics .active a:hover {
+            color: #40476B;
+            border: none;
+            background: url('../img/menu-top-bg-2.png') repeat-x;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .tabs-content {
+            background: rgba(22, 21, 21, 0.4);
+            overflow: hidden;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            margin: 0 0 32px 0;
+        }
+
+        .tabs-content table {
+            font-size: 15px;
+            font-family: calibri;
+            border: none;
+        }
+        .tab-content table a {
+            color: #fff;
+        }
+        
+        .tab-content table th {
+            color: #fff;
+            text-align: center;
+        }
+        
+        .tab-content table td  {
+            color: #fff;
+            text-align: center;
+        }
+        
+    table.tablesorter {
+        font-family: Verdana;
+        margin:10px 0pt 15px;
+        font-size: 10pt;
+        width: 100%;
+        text-align: center;
+        border: 1px solid;
+    }
+    table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+        color: #40476B;
+        background: url('../img/asc-desc.gif') no-repeat;
+    }
+    table.tablesorter thead tr .header {
+        background: rgba(255, 255, 255, 0.8) url('../img/menu-top-bg-2.png') no-repeat;
+        background-position: center right;
+        cursor: pointer;
+        padding: 10px 0;
+    }
+    table.tablesorter tbody td {
+        font-family: 'Verdana', cursive;
+        color: #FFF;
+        padding: 4px;
+        background: rgba(22, 21, 21, 0.6);
+        vertical-align: top;
+        padding: 10px 0;
+    }
+    table.tablesorter tbody tr.odd td {
+        background-color:#F0F0F6;
+    }
+    table.tablesorter thead tr .headerSortUp {
+        background-image: url(../img/asc.gif);
+    }
+    table.tablesorter thead tr .headerSortDown {
+        background-image: url(../img/desc.gif);
+    }
+    table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+        
+    }
+    
+    .rules {
+        font-family: bebas;
+        border: solid 1px;
+        background: rgba(0, 0, 0, 0.6);
+        line-height: 24px;
+    }
+    
+    .rules-index {
+        color: #FFF;
+        text-align: center;
+        width: 500px;
+        margin: 0 auto;
+    }
+    
+    .rules-index h2 {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+    
+    .rules-index a {
+        text-decoration: underline;
+        color: #fff;
+    }
+    
+    .rules p {
+        margin: 20px 0;
+        font-family: calibri;
+    }
+    
+    .clubs a{
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .clubs a:hover{
+        text-decoration: underline;
+    }
+    
+    .clubs-stats a{
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .clubs-stats a:hover{
+        text-decoration: underline;
+    }   
+    
+    .schedules {
+        font-family: Verdana;
+        font-size: 14px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.4);
+        margin: 0 0 30px 0;
+    }
+    
+    .schedules th {
+        font-weight: normal;
+        background: url('../img/menu-top-bg-2.png') repeat-x;
+        color: #000;
+        font-size: 16px;
+    }
+    
+    .schedules th, td {
+        text-align: center !important;
+        word-spacing: 1px;
+    }
+    
+    .schedules .week {
+        color: #fff;
+        background: url('../img/menu-top-bg.png') repeat-x;
+    }
+    
+    .schedules a {
+        text-decoration: none;
+        color: #fff;
+    }
+    
+    .schedules a:hover {
+        text-decoration: underline;
+    }
+    
+    
+    .week td {
+        text-align: center;
+        font-family: bebas;
+        font-size: 24px;
+        padding: 15px;
+        word-spacing: 2px;
+    }
+    
+    .irc1 img {
+        width: 500px;
+        height: 400px;
+        margin: 20px 0;
+    }
+    
+    .irc2 img {
+        width: 300px;
+        height: 400px;
+        margin: 20px 0;
+    }
+    
+    .irc3 img {
+        width: 500px !important;
+        height: 400px !important;
+    }
+    
+    
+    .irc4 img {
+        width: 500px;
+        height: 400px;
+        margin: 20px 0;
+    }
+    
+    .irc5 img {
+        width: 400px;
+        height: 200px;
+        margin: 20px 0;
+    }
+    
+    .news {
+        font-family: bebas;
+        border: solid 1px #000;
+        background: rgba(0, 0, 0, 0.6);
+        line-height: 24px;
+        color: #FFF;
+        text-align: center;
+        margin: 0 auto; 
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+    
+    .news h1 {
+        word-spacing: 5px;
+        font-size: 40px;
+        font-weight: bold;
+        margin: 20px 0;
+        text-align: center;
+    }
+    
+    .news h2 {
+        word-spacing: 5px;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 30px 0;
+        text-align: center;
+    }
+    
+    .news a {
+        text-decoration: underline;
+        color: #fff;
+    }
+    
+    .news p {
+        margin: 20px 0;
+        text-align: center;
+        font-family: calibri;
+    }
+    
+    .news li {
+        margin: 0px 0;
+        text-align: center;
+        font-family: calibri;
+    }
+    
+    .news-article p {
+        
+    }
+    
+    .clubname {
+        color: #fff;
+        background: url('../img/menu-top-bg.png') repeat-x;
+    }
+    
+    .clubname td {
+        text-align: center;
+        font-family: Verdana;
+        font-size: 26px;
+        padding: 10px;
+        word-spacing: 1px;
+    }
+    
+    .standingrank a{
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .standingrank a:hover{
+        text-decoration: underline;
+    }
+    
+    .transfers {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .transfers td {
+        word-spacing: 1px;
+    }
+    
+    .results p {
+        font-weight: 900;
+        font-size: 14px;
+    }
+    
+    .results h2 {
+        font-size: 20px !important;
+    }
+    
+    #fixtures {
+        text-align: center;
+    }
+    
+    #games {
+        width: 350px;
+        text-align: center;
+    }
+    
+    .gametable {
+        font-family: calibri;
+        font-size: 14px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.4);
+        margin: 0 0 30px 0;
+    }
+    
+    .gametable th {
+        font-weight: normal;
+        background: url('../img/menu-top-bg-2.png') repeat-x;
+        color: #000;
+        font-size: 16px;
+    }
+    
+    .gametable th, td {
+        text-align: center !important;
+    }
+    
+    .gametable .gamename {
+        color: #fff;
+        background: url('../img/menu-top-bg.png') repeat-x;
+    }
+    
+    .gametable a {
+        text-decoration: none;
+        color: #fff;
+    }
+    
+    .gametable a:hover {
+        text-decoration: underline;
+    }
+    
+    
+    .gamename td {
+        text-align: center;
+        font-family: Verdana;
+        font-size: 19px;
+        padding: 15px;
+        word-spacing: 5px;
+    }
+    
+    #lineup {
+        float: right;
+        width: 300px;
+        margin: 0 15px 0 0;
+        text-align: center;
+    }
+    
+    #events {
+        float: right;
+        width: 300px;
+        text-align: center;
+    }
+	
+	#profile {
+        width: 100%;
+        text-align: center;
+    }
+	
+    .playerlist {
+
+    }
+    
+    .playerlist th{
+        font-size: 11px;
+        font-family: Verdana;
+    }
+    
+    .playerlist td{
+        font-size: 11px;
+        font-family: Verdana;
+    }
+
+    #overview {
+        text-align: center;
+    }
+
+    .more-news {
+        margin: 0;
+        width: 597px;
+        text-align: center;
+        background: url('../img/article-read-more.png') repeat-x;
+        color: white;
+        text-transform: lowercase;
+        display: block;
+        font-family: 'Bebas', cursive;
+        font-size: 16px;
+        padding: 10px 12px;
+        border-radius: 5px;
+        word-spacing: 3px;
+    }
+
+    .more-news:hover {
+        color: white;
+    }
+    

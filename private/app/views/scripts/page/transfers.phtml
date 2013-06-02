@@ -1,0 +1,43 @@
+	<table class="tablesorter" cellspacing="1">             
+		<thead>
+			<tr> 
+				<th class="headSort">Period</th>
+				<th class="headSort">Player</th>
+				<th class="headSort">Position</th>
+				<th class="headSort">Old Team</th>
+				<th class="headSort">New Team</th>
+				<th class="headSort">Punishment</th>
+			</tr> 
+		</thead> 
+		<tbody class="transfers"> 			
+			<tr>
+				<td>Pre-season</td> 
+				<td>CARLEETOS</td>
+				<td>Allrounder</td>
+				<td>Bears</td>
+				<td>Gorillas</td>
+				<td>None</td>
+			</tr>
+			<tr>
+				<td>Pre-season</td> 
+				<td>Tet</td>
+				<td>Defense</td>
+				<td>-</td>
+				<td>Gorillas</td>
+				<td>None</td>
+			</tr>
+		</tbody> 
+	</table>
+	
+	<script type="text/javascript">
+
+	$(function() {
+		$("table").tablesorter({ 
+			// sort on the first column and third column, order asc 
+			sortList: [[0,0],[0,0]] 
+		}); 
+	});
+
+	</script>
+
+	<script type="text/javascript" src="assets/js/jquery.tablesorter.js"></script> 

@@ -1,0 +1,379 @@
+		<table class="table schedules">
+			<thead>
+				<tr class="week" ><td colspan="6">Matchweek 1</td></tr>
+					<tr>
+						<th>Date</th>
+						<th>Home</th>
+						<th>Score</th>
+						<th>Away</th>
+						<th>Time (CEST)</th>
+						<th>Admin</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+					<?php 	
+					$db = Zend_Registry::get('db');
+
+					$q = $db->prepare('SELECT * FROM schedules WHERE stage="Matchweek 1"');
+					$q->execute();
+					$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($schedules as $schedule):
+
+					?>
+				
+					<tr> 
+							<td><?php echo $schedule['date'] ?></td> 
+							<td><?php echo $schedule['hometeam'] ?></td> 
+							<td><?php echo $schedule['score'] ?></td> 
+							<td><?php echo $schedule['awayteam'] ?></td> 
+							<td><?php echo $schedule['time'] ?></td> 
+							<td><?php echo $schedule['admin'] ?></td>
+					</tr>
+
+					<?php endforeach; ?>
+			</tbody>		
+		</table>
+		
+		<table class="table schedules">
+			<thead>
+				<tr class="week" ><td colspan="6">Matchweek 2</td></tr>
+					<tr>
+						<th>Date</th>
+						<th>Home</th>
+						<th>Score</th>
+						<th>Away</th>
+						<th>Time (CEST)</th>
+						<th>Admin</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+					<?php 	
+					$db = Zend_Registry::get('db');
+
+					$q = $db->prepare('SELECT * FROM schedules WHERE stage="Matchweek 2"');
+					$q->execute();
+					$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($schedules as $schedule):
+
+					?>
+				
+					<tr> 
+							<td><?php echo $schedule['date'] ?></td> 
+							<td><?php echo $schedule['hometeam'] ?></td> 
+							<td><?php echo $schedule['score'] ?></td> 
+							<td><?php echo $schedule['awayteam'] ?></td> 
+							<td><?php echo $schedule['time'] ?></td> 
+							<td><?php echo $schedule['admin'] ?></td>
+					</tr>
+
+					<?php endforeach; ?>				
+			</tbody>		
+		</table>
+
+		<table class="table schedules">
+			<thead>
+				<tr class="week" ><td colspan="6">Matchweek 3</td></tr>
+					<tr>
+						<th>Date</th>
+						<th>Home</th>
+						<th>Score</th>
+						<th>Away</th>
+						<th>Time (CEST)</th>
+						<th>Admin</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+					<?php 	
+					$db = Zend_Registry::get('db');
+
+					$q = $db->prepare('SELECT * FROM schedules WHERE stage="Matchweek 3"');
+					$q->execute();
+					$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($schedules as $schedule):
+
+					?>
+				
+					<tr> 
+							<td><?php echo $schedule['date'] ?></td> 
+							<td><?php echo $schedule['hometeam'] ?></td> 
+							<td><?php echo $schedule['score'] ?></td> 
+							<td><?php echo $schedule['awayteam'] ?></td> 
+							<td><?php echo $schedule['time'] ?></td> 
+							<td><?php echo $schedule['admin'] ?></td>
+					</tr>
+
+					<?php endforeach; ?>			
+			</tbody>		
+		</table>	
+
+		<table class="table schedules">
+			<thead>
+				<tr class="week" ><td colspan="6">Matchweek 4</td></tr>
+					<tr>
+						<th>Date</th>
+						<th>Home</th>
+						<th>Score</th>
+						<th>Away</th>
+						<th>Time (CEST)</th>
+						<th>Admin</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+					<?php 	
+					$db = Zend_Registry::get('db');
+
+					$q = $db->prepare('SELECT * FROM schedules WHERE stage="Matchweek 4"');
+					$q->execute();
+					$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($schedules as $schedule):
+
+					?>
+				
+					<tr> 
+							<td><?php echo $schedule['date'] ?></td> 
+							<td><?php echo $schedule['hometeam'] ?></td> 
+							<td><?php echo $schedule['score'] ?></td> 
+							<td><?php echo $schedule['awayteam'] ?></td> 
+							<td><?php echo $schedule['time'] ?></td> 
+							<td><?php echo $schedule['admin'] ?></td>
+					</tr>
+
+					<?php endforeach; ?>				
+			</tbody>		
+		</table>
+
+		<table class="table schedules">
+			<thead>
+				<tr class="week" ><td colspan="6">Matchweek 5</td></tr>
+					<tr>
+						<th>Date</th>
+						<th>Home</th>
+						<th>Score</th>
+						<th>Away</th>
+						<th>Time (CEST)</th>
+						<th>Admin</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+					<?php 	
+					$db = Zend_Registry::get('db');
+
+					$q = $db->prepare('SELECT * FROM schedules WHERE stage="Matchweek 5"');
+					$q->execute();
+					$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($schedules as $schedule):
+
+					?>
+				
+					<tr> 
+							<td><?php echo $schedule['date'] ?></td> 
+							<td><?php echo $schedule['hometeam'] ?></td> 
+							<td><?php echo $schedule['score'] ?></td> 
+							<td><?php echo $schedule['awayteam'] ?></td> 
+							<td><?php echo $schedule['time'] ?></td> 
+							<td><?php echo $schedule['admin'] ?></td>
+					</tr>
+
+					<?php endforeach; ?>					
+			</tbody>		
+		</table>	
+
+		<table class="table schedules">
+			<thead>
+				<tr class="week" ><td colspan="6">Matchweek 6</td></tr>
+					<tr>
+						<th>Date</th>
+						<th>Home</th>
+						<th>Score</th>
+						<th>Away</th>
+						<th>Time (CEST)</th>
+						<th>Admin</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+					<?php 	
+					$db = Zend_Registry::get('db');
+
+					$q = $db->prepare('SELECT * FROM schedules WHERE stage="Matchweek 6"');
+					$q->execute();
+					$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($schedules as $schedule):
+
+					?>
+				
+					<tr> 
+							<td><?php echo $schedule['date'] ?></td> 
+							<td><?php echo $schedule['hometeam'] ?></td> 
+							<td><?php echo $schedule['score'] ?></td> 
+							<td><?php echo $schedule['awayteam'] ?></td> 
+							<td><?php echo $schedule['time'] ?></td> 
+							<td><?php echo $schedule['admin'] ?></td>
+					</tr>
+
+					<?php endforeach; ?>			
+			</tbody>		
+		</table>
+
+		<table class="table schedules">
+			<thead>
+				<tr class="week" ><td colspan="6">Matchweek 7</td></tr>
+					<tr>
+						<th>Date</th>
+						<th>Home</th>
+						<th>Score</th>
+						<th>Away</th>
+						<th>Time (CEST)</th>
+						<th>Admin</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+					<?php 	
+					$db = Zend_Registry::get('db');
+
+					$q = $db->prepare('SELECT * FROM schedules WHERE stage="Matchweek 7"');
+					$q->execute();
+					$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($schedules as $schedule):
+
+					?>
+				
+					<tr> 
+							<td><?php echo $schedule['date'] ?></td> 
+							<td><?php echo $schedule['hometeam'] ?></td> 
+							<td><?php echo $schedule['score'] ?></td> 
+							<td><?php echo $schedule['awayteam'] ?></td> 
+							<td><?php echo $schedule['time'] ?></td> 
+							<td><?php echo $schedule['admin'] ?></td>
+					</tr>
+
+					<?php endforeach; ?>	
+			</tbody>		
+		</table>	
+
+		<table class="table schedules">
+			<thead>
+				<tr class="week" ><td colspan="6">Matchweek 8</td></tr>
+					<tr>
+						<th>Date</th>
+						<th>Home</th>
+						<th>Score</th>
+						<th>Away</th>
+						<th>Time (CEST)</th>
+						<th>Admin</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+					<?php 	
+					$db = Zend_Registry::get('db');
+
+					$q = $db->prepare('SELECT * FROM schedules WHERE stage="Matchweek 8"');
+					$q->execute();
+					$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($schedules as $schedule):
+
+					?>
+				
+					<tr> 
+							<td><?php echo $schedule['date'] ?></td> 
+							<td><?php echo $schedule['hometeam'] ?></td> 
+							<td><?php echo $schedule['score'] ?></td> 
+							<td><?php echo $schedule['awayteam'] ?></td> 
+							<td><?php echo $schedule['time'] ?></td> 
+							<td><?php echo $schedule['admin'] ?></td>
+					</tr>
+
+					<?php endforeach; ?>			
+			</tbody>		
+		</table>
+
+		<table class="table schedules">
+			<thead>
+				<tr class="week" ><td colspan="6">Matchweek 9</td></tr>
+					<tr>
+						<th>Date</th>
+						<th>Home</th>
+						<th>Score</th>
+						<th>Away</th>
+						<th>Time (CEST)</th>
+						<th>Admin</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+					<?php 	
+					$db = Zend_Registry::get('db');
+
+					$q = $db->prepare('SELECT * FROM schedules WHERE stage="Matchweek 9"');
+					$q->execute();
+					$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($schedules as $schedule):
+
+					?>
+				
+					<tr> 
+							<td><?php echo $schedule['date'] ?></td> 
+							<td><?php echo $schedule['hometeam'] ?></td> 
+							<td><?php echo $schedule['score'] ?></td> 
+							<td><?php echo $schedule['awayteam'] ?></td> 
+							<td><?php echo $schedule['time'] ?></td> 
+							<td><?php echo $schedule['admin'] ?></td>
+					</tr>
+
+					<?php endforeach; ?>				
+			</tbody>		
+		</table>
+
+		<table class="table schedules">
+			<thead>
+				<tr class="week" ><td colspan="6">Matchweek 10</td></tr>
+					<tr>
+						<th>Date</th>
+						<th>Home</th>
+						<th>Score</th>
+						<th>Away</th>
+						<th>Time (CEST)</th>
+						<th>Admin</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+					<?php 	
+					$db = Zend_Registry::get('db');
+
+					$q = $db->prepare('SELECT * FROM schedules WHERE stage="Matchweek 10"');
+					$q->execute();
+					$schedules = $q->fetchAll(PDO::FETCH_ASSOC);
+
+					foreach($schedules as $schedule):
+
+					?>
+				
+					<tr> 
+							<td><?php echo $schedule['date'] ?></td> 
+							<td><?php echo $schedule['hometeam'] ?></td> 
+							<td><?php echo $schedule['score'] ?></td> 
+							<td><?php echo $schedule['awayteam'] ?></td> 
+							<td><?php echo $schedule['time'] ?></td> 
+							<td><?php echo $schedule['admin'] ?></td>
+					</tr>
+
+					<?php endforeach; ?>				
+			</tbody>		
+		</table>	

@@ -1,0 +1,19 @@
+<div id="overview">
+
+<?php
+  foreach( $this->news as $item):
+    echo '<article>
+              <div class="post clearfix">
+                <div class="post-left">
+                    <img src="' . $item['image'] . '">
+                </div>
+                <div class="post-right">
+                  <h2>' . $item['title'] . '</h2>
+                  <p class="posted-by">' . date("F d Y H:i", strtotime( $item['date_created'] ) ) . ', by ' . $item['author'] . '</p>
+                  <p class="description">' . strip_tags(substr($item['text'], 0, 300)) . '...' . '</p>
+                  <a class="read-more" href="news/' . $item['url'] . '">Read More</a>
+                </div>
+              </div>
+      </article>';
+  endforeach; 
+?>

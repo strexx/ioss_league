@@ -1,0 +1,77 @@
+<div class="clubs">
+			
+		<table class="tablesorter" cellspacing="1">             
+			<thead>
+				<tr> 
+					<th class="headSort header headerSortDown">Team&nbsp;</th> 
+					<th class="headSort header">Tag</th>
+					<th class="headSort header">Amount</th>  
+					<th class="headSort header">Captain</th>  
+				</tr> 
+			</thead> 
+			<tbody>
+
+			<?php 
+				foreach( $this->clubs as $club ): 
+				echo '<tr> 
+						<td><a href="/club/' . $club['tag'] . '">' . $club['club'] . '</a></td> 
+						<td>' . $club['tag'] . '</td>
+						<td>' . $club['amount'] . '</td>
+						<td>' . $club['captain'] . '</td>
+					</tr>';
+				endforeach;
+			?>
+			</tbody> 
+		</table>
+			
+</div>
+
+<div class="clubs-stats">
+			
+		<table class="tablesorter" cellspacing="1">             
+			<thead>
+				<tr> 
+					<th class="headSort header headerSortDown">Team&nbsp;</th> 
+					<th class="headSort header">Shots</th>
+					<th class="headSort header">Shots on target</th>  
+					<th class="headSort header">Passes</th>
+					<th class="headSort header">Passes completed</th>  
+					<th class="headSort header">Fouls</th>	
+					<th class="headSort header">Yellow Cards</th>	
+					<th class="headSort header">Red Cards</th>
+					<th class="headSort header">Clean Sheets</th>					
+				</tr> 
+			</thead> 
+			<tbody> 
+				<?php 
+					foreach( $this->clubs as $club ):
+					echo'<tr> 
+							<td><a href="' . $this->baseurl . 'club/' . $club['tag'] . '">' . $club['club'] . '</a></td> 
+							<td>' . $club['shots'] . '</td>
+							<td>' . $club['shotsot'] . '</td>
+							<td>' . $club['passes'] . '</td>
+							<td>' . $club['passescp'] . '</td>
+							<td>' . $club['fouls'] . '</td>		
+							<td>' . $club['ycards'] . '</td>
+							<td>' . $club['rcards'] . '</td> 
+							<td>' . $club['csheets'] . '</td>					
+						</tr>';
+					endforeach;
+				?>
+			</tbody> 
+		</table>
+			
+		</div>
+
+<script type="text/javascript">
+
+$(function() {
+    $("table").tablesorter({ 
+        // sort on the first column and third column, order asc 
+        sortList: [[0,0],[0,0]] 
+    }); 
+});
+
+</script>
+
+<script type="text/javascript" src="assets/js/jquery.tablesorter.js"></script> 

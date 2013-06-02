@@ -1,0 +1,40 @@
+<div class="clubs">
+			
+		<table class="tablesorter" cellspacing="1">             
+			<thead class="clubname"><td colspan="5"><?php echo $this->club['club'] ?></td> 
+				<tr>
+					<th class="headSort">Player&nbsp </th> 
+					<th class="headSort">Position</th> 
+					<th class="headSort">Steam ID</th>  
+					<th class="headSort">Nationality</th> 
+				</tr> 
+			</thead> 
+			<tbody> 
+
+				<?php foreach( $this->players as $player ): ?>
+				<tr> 
+					<td><?php echo $player['name'] ?></td> 
+					<td><?php echo $player['pos'] ?></td>
+					<td><?php echo $player['steam_id'] ?></td>
+					<td><img src="./assets/img/flags/small/<?php echo $player['nation'] ?>"></td>
+				</tr>
+
+				<?php endforeach; ?>
+				
+			</tbody> 
+		</table>
+			
+		</div>
+		
+		<script type="text/javascript">
+
+		$(function() {
+			$("table").tablesorter({ 
+				// sort on the first column and third column, order asc 
+				sortList: [[0,0],[0,0]] 
+			}); 
+		});
+
+		</script>
+
+		<script type="text/javascript" src="assets/js/jquery.tablesorter.js"></script> 
