@@ -76,7 +76,7 @@ class JsonController extends Cms {
 
 					// ========= Store hometeam stats general data ========= //
 
-					/*if( !empty($homeTeamStats) ) {
+					if( !empty($homeTeamStats) ) {
 
 						$q = $db->prepare('UPDATE clubs SET shots = shots + :shots,
 												  shotsot = shotsot + :shotsot, 
@@ -84,8 +84,7 @@ class JsonController extends Cms {
 												  passescp = passescp + :passescp,
 												  fouls = fouls + :fouls, 
 												  ycards = ycards + :ycards, 
-												  rcards = rcards + :rcards, 
-												  csheets = csheets + :csheets
+												  rcards = rcards + :rcards
 												  WHERE club = :club');
 						$q->bindValue(":shots", $homeTeamStatsArr['7']);
 						$q->bindValue(":shotsot", $homeTeamStatsArr['8']);
@@ -94,11 +93,10 @@ class JsonController extends Cms {
 						$q->bindValue(":fouls", $homeTeamStatsArr['2']);
 						$q->bindValue(":ycards", $homeTeamStatsArr['1']);
 						$q->bindValue(":rcards", $homeTeamStatsArr['0']);
-						$q->bindValue(":csheets", '1');
 						$q->bindValue(":club", 'NextGen');
 						$q->execute();
 
-					}*/
+					}
 					
 					// ========= Get home players data ========= //
 
@@ -207,7 +205,7 @@ class JsonController extends Cms {
 
 					// ========= Store awayteam stats general data ========= //
 		 
-					/*if( !empty($awayTeamStats) ) {
+					if( !empty($awayTeamStats) ) {
 
 						$q = $db->prepare('UPDATE clubs SET shots = shots + :shots,
 												  shotsot = shotsot + :shotsot, 
@@ -215,8 +213,7 @@ class JsonController extends Cms {
 												  passescp = passescp + :passescp,
 												  fouls = fouls + :fouls, 
 												  ycards = ycards + :ycards, 
-												  rcards = rcards + :rcards, 
-												  csheets = csheets + :csheets
+												  rcards = rcards + :rcards
 												  WHERE club = :club');
 						$q->bindValue(":shots", $awayTeamStatsArr['7']);
 						$q->bindValue(":shotsot", $awayTeamStatsArr['8']);
@@ -225,11 +222,10 @@ class JsonController extends Cms {
 						$q->bindValue(":fouls", $awayTeamStatsArr['2']);
 						$q->bindValue(":ycards", $awayTeamStatsArr['1']);
 						$q->bindValue(":rcards", $awayTeamStatsArr['0']);
-						$q->bindValue(":csheets", '1');
 						$q->bindValue(":club", 'Bears');
 						$q->execute();
 
-					}*/
+					}
 					
 					// ========= Get away players data ========= //
 
