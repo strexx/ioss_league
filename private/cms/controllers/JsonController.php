@@ -26,7 +26,8 @@ class JsonController extends Cms {
 
             $fileExistsDb = $db->fetchRow('SELECT * FROM json WHERE name = ?', $jsonFile);
 
-            if (!$fileExistsDb && in_array($fileParts['extension'], $fileTypes)) {
+            if (!$fileExistsDb && in_array($fileParts['extension'], $fileTypes)) 
+            {
                 move_uploaded_file($tempFile, $targetFile);
 
                 $fileCheckExists = $_SERVER['DOCUMENT_ROOT'] . $targetFolder . $jsonFile;
@@ -36,11 +37,6 @@ class JsonController extends Cms {
 	                $fileUrl = $config->baseurl . 'uploads/json/' . $jsonFile;
 		        	$getJson = file_get_contents($fileUrl);
 		        	$jsonData = json_decode($getJson, true);
-
-		        	// ========= JSON output ========= //
-
-		        	var_dump($jsonData);
-		        	exit;
 
 		        	// ========= Home team ========= //
 
@@ -317,7 +313,7 @@ class JsonController extends Cms {
 		        }
 
             } else {
-                echo 'Invalid file type.';
+                echo 'Invalid file type or file has already been inserted';
             }
     	} else {
 	        throw new Exception("Match has been inserted already", 1);
