@@ -10,7 +10,7 @@ return array(
     'schedules' => new Zend_Controller_Router_Route('/schedules', array('controller' => 'page','action' => 'schedules')),
     'standings' => new Zend_Controller_Router_Route('/standings', array('controller' => 'page','action' => 'standings')),
     'cup' => new Zend_Controller_Router_Route('/cup', array('controller' => 'page','action' => 'cup')),
-    'transfers' => new Zend_Controller_Router_Route('/transfers', array('controller' => 'page','action' => 'transfers')),
+    'punishments' => new Zend_Controller_Router_Route('/punishments', array('controller' => 'page','action' => 'punishments')),
     'rules' => new Zend_Controller_Router_Route('/rules', array('controller' => 'page','action' => 'rules')),
     'media' => new Zend_Controller_Router_Route('/media', array('controller' => 'page','action' => 'media')),
     'irc' => new Zend_Controller_Router_Route('/irc', array('controller' => 'page','action' => 'irc')),
@@ -29,7 +29,7 @@ return array(
     'news-article' => new Zend_Controller_Router_Route('/news/:article', array('controller' => 'news','action' => 'detail')),
 
 	// MATCH	
-	'match' => new Zend_Controller_Router_Route('/match/:match', array('controller' => 'match', 'action' => 'statistic'))
+	'match' => new Zend_Controller_Router_Route('/match/:id', array('controller' => 'match', 'action' => 'statistic'))
 	
 
 

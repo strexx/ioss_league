@@ -92,15 +92,14 @@
 							</tr>							
 						</tbody>	
 					</table>
-						<a href="" target="_blank"><button class="btn">Screenshot</button></a>
-						<a href=""><button class="btn">Back to Fixtures</button></a>			
+						<a href="schedules"><button class="btn">Back to Fixtures</button></a>			
 				</div>
 			
 		  
 				<div id="games">
 					<table class="table gametable">
 						<thead>
-							<tr class="gamename" ><td colspan="3"> - </td></tr>
+							<tr class="gamename" ><td colspan="3"><?php echo $this->matchInfo['h_team'] . '&nbsp;' . $this->matchInfo['h_goals']  ?>-<?php echo  $this->matchInfo['a_goals'] . '&nbsp;' . $this->matchInfo['a_team']?></td></tr>
 							<tr>
 								<th>Home</th>
 								<th>Stats</th>
@@ -108,65 +107,66 @@
 							</tr>
 						</thead>					
 						<tbody>
+
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_goals'] ?></td>
 								<td>Goals</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_goals'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_shots'] ?></td>
 								<td>Total Shots</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_shots'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_shotsot'] ?></td>
 								<td>Shots On Target</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_shotsot'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_possession'] ?></td>
 								<td>Possession</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_possession'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_interceptions'] ?></td>
 								<td>Interceptions</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_interceptions'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_passes'] ?></td>
 								<td>Corners</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_corners'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_passes'] ?></td>
 								<td>Total Passes</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_passes'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_passescp'] ?></td>
 								<td>Passes Completed</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_passescp'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_fouls'] ?></td>
 								<td>Fouls</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_fouls'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_ycards'] ?></td>
 								<td>Yellow Cards</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_ycards'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_rcards'] ?></td>
 								<td>Red Cards</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_rcards'] ?></td>
 							</tr>
 							<tr>
-								<td></td>
+								<td><?php echo $this->matchInfo['h_distance'] ?></td>
 								<td>Distance Covered</td>
-								<td></td>
+								<td><?php echo $this->matchInfo['a_distance'] ?></td>
 							</tr>								
 						</tbody>		
 					</table>			

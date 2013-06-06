@@ -40,16 +40,16 @@ class JsonController extends Cms {
 
 		        	// ========= Home team ========= //
 
-		        	$homeTeamStatsArr = $jsonData['homeTeam']['statistics'];
+			    	$homeTeamStatsArr = $jsonData['homeTeam']['statistics'];
 
-		        	$homeTeamName = $jsonData['homeTeam']['info']['name'];
-		        	$homeTeamMatchEvents = $jsonData['homeTeam']['matchEvents'];
-		        	$homeTeamPlayers = $jsonData['homeTeam']['players'];
+			    	$homeTeamName = $jsonData['homeTeam']['info']['name'];
+			    	$homeTeamMatchEvents = $jsonData['homeTeam']['matchEvents'];
+			    	$homeTeamPlayers = $jsonData['homeTeam']['players'];
 
-		        	// ========= Get hometeam stats ========= //
+			    	// ========= Get hometeam stats ========= //
 
-		        	$homeTeamStats = array('name' => $homeTeamName,
-		        						  'redCards' => $homeTeamStatsArr['0'],
+			    	$homeTeamStats = array('name' => $homeTeamName,
+			    						  'redCards' => $homeTeamStatsArr['0'],
 			        					  'yellowCards' => $homeTeamStatsArr['1'],
 			        					  'fouls' => $homeTeamStatsArr['2'],
 			        					  'foulsSuffered' => $homeTeamStatsArr['3'],
@@ -86,13 +86,13 @@ class JsonController extends Cms {
 												  ycards = ycards + :ycards, 
 												  rcards = rcards + :rcards
 												  WHERE club = :club');
-						$q->bindValue(":shots", $homeTeamStatsArr['7']);
-						$q->bindValue(":shotsot", $homeTeamStatsArr['8']);
-						$q->bindValue(":passes", $homeTeamStatsArr['15']);
-						$q->bindValue(":passescp", $homeTeamStatsArr['9']);
-						$q->bindValue(":fouls", $homeTeamStatsArr['2']);
-						$q->bindValue(":ycards", $homeTeamStatsArr['1']);
-						$q->bindValue(":rcards", $homeTeamStatsArr['0']);
+						$q->bindValue(":shots", $homeTeamStats['shots']);
+						$q->bindValue(":shotsot", $homeTeamStats['shotsOnGoal']);
+						$q->bindValue(":passes", $homeTeamStats['passes']);
+						$q->bindValue(":passescp", $homeTeamStats['passesCompleted']);
+						$q->bindValue(":fouls", $homeTeamStats['fouls']);
+						$q->bindValue(":ycards", $homeTeamStats['yellowCards']);
+						$q->bindValue(":rcards", $homeTeamStats['redCards']);
 						$q->bindValue(":club", 'NextGen');
 						$q->execute();
 
@@ -169,16 +169,16 @@ class JsonController extends Cms {
 
 					}
 
-		        	// ========= Away team ========= //
+			    	// ========= Away team ========= //
 
-		        	$awayTeamStatsArr = $jsonData['awayTeam']['statistics'];
-		        	$awayTeamName = $jsonData['awayTeam']['info']['name'];
-		        	$awayTeamPlayers = $jsonData['awayTeam']['players'];
+			    	$awayTeamStatsArr = $jsonData['awayTeam']['statistics'];
+			    	$awayTeamName = $jsonData['awayTeam']['info']['name'];
+			    	$awayTeamPlayers = $jsonData['awayTeam']['players'];
 
-		        	// ========= Get awayteam stats ========= //
+			    	// ========= Get awayteam stats ========= //
 
-		        	$awayTeamStats = array('name' => $awayTeamName,
-		        						  'redCards' => $awayTeamStatsArr['0'],
+			    	$awayTeamStats = array('name' => $awayTeamName,
+			    						  'redCards' => $awayTeamStatsArr['0'],
 			        					  'yellowCards' => $awayTeamStatsArr['1'],
 			        					  'fouls' => $awayTeamStatsArr['2'],
 			        					  'foulsSuffered' => $awayTeamStatsArr['3'],
@@ -204,7 +204,7 @@ class JsonController extends Cms {
 			        					  'distanceCovered' => $awayTeamStatsArr['23']);
 
 					// ========= Store awayteam stats general data ========= //
-		 
+
 					if( !empty($awayTeamStats) ) {
 
 						$q = $db->prepare('UPDATE clubs SET shots = shots + :shots,
@@ -215,13 +215,13 @@ class JsonController extends Cms {
 												  ycards = ycards + :ycards, 
 												  rcards = rcards + :rcards
 												  WHERE club = :club');
-						$q->bindValue(":shots", $awayTeamStatsArr['7']);
-						$q->bindValue(":shotsot", $awayTeamStatsArr['8']);
-						$q->bindValue(":passes", $awayTeamStatsArr['15']);
-						$q->bindValue(":passescp", $awayTeamStatsArr['9']);
-						$q->bindValue(":fouls", $awayTeamStatsArr['2']);
-						$q->bindValue(":ycards", $awayTeamStatsArr['1']);
-						$q->bindValue(":rcards", $awayTeamStatsArr['0']);
+						$q->bindValue(":shots", $awayTeamStats['shots']);
+						$q->bindValue(":shotsot", $awayTeamStats['shotsOnGoal']);
+						$q->bindValue(":passes", $awayTeamStats['passes']);
+						$q->bindValue(":passescp", $awayTeamStats['passesCompleted']);
+						$q->bindValue(":fouls", $awayTeamStats['fouls']);
+						$q->bindValue(":ycards", $awayTeamStats['yellowCards']);
+						$q->bindValue(":rcards", $awayTeamStats['redCards']);
 						$q->bindValue(":club", 'Bears');
 						$q->execute();
 
@@ -298,11 +298,46 @@ class JsonController extends Cms {
 
 					}
 
+					// ========= Store data in matches table ========== //
+
+					$q = $db->prepare('INSERT INTO matches (h_team, h_goals, h_shots, h_shotsot, h_possession, h_interceptions, h_corners, h_passes, h_passescp, h_fouls, h_ycards, h_rcards, h_distance,
+															a_team, a_goals, a_shots, a_shotsot, a_possession, a_interceptions, a_corners, a_passes, a_passescp, a_fouls, a_ycards, a_rcards, a_distance) 
+									   VALUES (:h_team, :h_goals, :h_shots, :h_shotsot, :h_possession, :h_interceptions, :h_corners, :h_passes, :h_passescp, :h_fouls, :h_ycards, :h_rcards, :h_distance,
+									   		   :a_team, :a_goals, :a_shots, :a_shotsot, :a_possession, :a_interceptions, :a_corners, :a_passes, :a_passescp, :a_fouls, :a_ycards, :a_rcards, :a_distance)');
+
+					$q->bindValue(":h_team", $homeTeamName);
+					$q->bindValue(":h_goals", $homeTeamStats['goals']);
+					$q->bindValue(":h_shots", $homeTeamStats['shots']);
+					$q->bindValue(":h_shotsot", $homeTeamStats['shotsOnGoal']);
+					$q->bindValue(":h_possession", $homeTeamStats['possession']);
+					$q->bindValue(":h_interceptions", $homeTeamStats['interceptions']);
+					$q->bindValue(":h_corners", $homeTeamStats['corners']);
+					$q->bindValue(":h_passes", $homeTeamStats['passes']);
+					$q->bindValue(":h_passescp", $homeTeamStats['passesCompleted']);
+					$q->bindValue(":h_fouls", $homeTeamStats['fouls']);
+					$q->bindValue(":h_ycards", $homeTeamStats['yellowCards']);
+					$q->bindValue(":h_rcards", $homeTeamStats['redCards']);
+					$q->bindValue(":h_distance", $homeTeamStats['distanceCovered']);
+					$q->bindValue(":a_team", $awayTeamName);
+					$q->bindValue(":a_goals", $awayTeamStats['goals']);
+					$q->bindValue(":a_shots", $awayTeamStats['shots']);
+					$q->bindValue(":a_shotsot", $awayTeamStats['shotsOnGoal']);
+					$q->bindValue(":a_possession", $awayTeamStats['possession']);
+					$q->bindValue(":a_interceptions", $awayTeamStats['interceptions']);
+					$q->bindValue(":a_corners", $awayTeamStats['corners']);
+					$q->bindValue(":a_passes", $awayTeamStats['passes']);
+					$q->bindValue(":a_passescp", $awayTeamStats['passesCompleted']);
+					$q->bindValue(":a_fouls", $awayTeamStats['fouls']);
+					$q->bindValue(":a_ycards", $awayTeamStats['yellowCards']);
+					$q->bindValue(":a_rcards", $awayTeamStats['redCards']);
+					$q->bindValue(":a_distance", $awayTeamStats['distanceCovered']);
+					$q->execute();
+
 					// ========= Store JSON filename for filter ========= //
 
-		        	$q = $db->prepare('INSERT INTO json (name) VALUES (:name)');
-		        	$q->bindValue(':name', $jsonFile);
-		        	$q->execute();
+			    	$q = $db->prepare('INSERT INTO json (name) VALUES (:name)');
+			    	$q->bindValue(':name', $jsonFile);
+			    	$q->execute();
 
 		        	$this->_helper->redirector->gotoRouteAndExit(array('action' => 'upload'));
 
