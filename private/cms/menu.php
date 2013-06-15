@@ -50,6 +50,14 @@ return array(
 	    )
 	),
 	
+		'transfers' => array(
+	    'name'  => 'Transfers',
+	    'items' => array(
+                'list' => 'Overview',
+                'add' => 'Add',
+	    )
+	),
+	
 		'json' => array(
 	    'name'  => 'Match upload',
 	    'items' => array(

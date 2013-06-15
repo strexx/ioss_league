@@ -9,23 +9,22 @@
 				<th class="headSort">Punishment</th>
 			</tr> 
 		</thead> 
-		<tbody class="transfers"> 			
-			<tr>
-				<td>Pre-season</td> 
-				<td>CARLEETOS</td>
-				<td>Allrounder</td>
-				<td>Bears</td>
-				<td>Gorillas</td>
-				<td>None</td>
-			</tr>
-			<tr>
-				<td>Pre-season</td> 
-				<td>Tet</td>
-				<td>Defense</td>
-				<td>-</td>
-				<td>Gorillas</td>
-				<td>None</td>
-			</tr>
+		<tbody class="transfers"> 	
+		
+			<?php 
+			foreach($this->transfers as $transfer):
+        
+			echo'<tr> 
+					<td>' . $transfer['period'] . '</td> 
+					<td>' . $transfer['name'] . '</td> 
+					<td>' . $transfer['position'] . '</td> 
+					<td>' . $transfer['oldteam'] . '</td> 
+					<td>' . $transfer['newteam'] . '</td> 
+					<td>' . $transfer['punishment'] . '</td>
+			</tr>';
+			endforeach;
+			?> 
+			
 		</tbody> 
 	</table>
 	

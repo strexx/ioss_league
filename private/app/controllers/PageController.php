@@ -104,7 +104,17 @@ class PageController extends AppController {
 
     public function transfersAction()
     {
-        //
+        // Includes
+        $request = Zend_Controller_Front::getInstance()->getRequest();
+        $db = Zend_Registry::get('db');
+
+        // Queries
+        $q = $db->prepare('SELECT * FROM transfers ORDER BY period');
+        $q->execute();
+        $transfers = $q->fetchAll(PDO::FETCH_ASSOC);
+
+        // Views
+        $this->view->transfers = $transfers;
     }
 
     public function rulesAction()

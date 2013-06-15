@@ -1,0 +1,37 @@
+<?php
+$this->layout()->title = $this->translate('Transfers overview');
+?>
+<section class=categories>
+    <table>
+        <thead>
+            <tr>
+                <th><?php echo $this->translate('Period');?>
+				<th><?php echo $this->translate('Player');?>
+				<th><?php echo $this->translate('Position');?>
+				<th><?php echo $this->translate('Old Team');?>
+				<th><?php echo $this->translate('New Team');?>
+				<th><?php echo $this->translate('Punishment');?>
+                <th width="90">Active
+                <th width="50">&nbsp;
+                <th width="50">&nbsp;
+        </thead>
+        <tbody>
+            <?php 
+            $items = $this->items;
+            foreach($items as $i => $item):?>
+            <tr>
+                <td><?php echo $item['period']; ?></td>
+				<td><?php echo $item['name']; ?></td>
+				<td><?php echo $item['position']; ?></td>
+				<td><?php echo $item['oldteam']; ?></td>
+				<td><?php echo $item['newteam']; ?></td>
+				<td><?php echo $item['punishment']; ?></td>
+                <td><a href="<?php echo $this->url(array('action' => 'edit', 'id' => $item['id'])) ?>"><?php echo $this->translate('Update');?></a></td>
+                <td class=delete><a href="<?php echo $this->url(array('action' => 'delete', 'id' => $item['id'])) ?>"><?php echo $this->translate('Delete');?></a></td>
+            </tr>
+            <?php
+            endforeach;
+            ?>
+        </tbody>
+    </table>
+</section>
