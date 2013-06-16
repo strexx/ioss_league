@@ -172,6 +172,7 @@ class MatchController extends AppController {
 						
 						$playerPositions[$k]['steamId'] = $player['info']['steamId'];
 						$playerPositions[$k]['position'] = $player['matchPeriodData'][0]['info']['position'];
+						$playerPositions[$k]['team'] = $team;
 
 						$homeTeamPlayersDetail[$k]['steamId'] = $player['info']['steamId'];
 						$homeTeamPlayersDetail[$k]['shots'] = $player['matchPeriodData'][0]['statistics']['7'] + $player['matchPeriodData'][1]['statistics']['7'];
@@ -210,6 +211,7 @@ class MatchController extends AppController {
 					elseif($team == 'away') {
 						$playerPositions[$k]['steamId'] = $player['info']['steamId'];
 						$playerPositions[$k]['position'] = $player['matchPeriodData'][0]['info']['position'];
+						$playerPositions[$k]['team'] = $team;
 
 						$awayTeamPlayersDetail[$k]['steamId'] = $player['info']['steamId'];
 						$awayTeamPlayersDetail[$k]['shots'] = $player['matchPeriodData'][0]['statistics']['7'] + $player['matchPeriodData'][1]['statistics']['7'];
@@ -325,6 +327,12 @@ class MatchController extends AppController {
 			}
 
 			// ========= Store data in matches table ========== //
+			
+			$possHplusA = $homeTeamStats['possession'] + $awayTeamStats['possession']; 
+			$possAplusH = $awayTeamStats['possession'] + $homeTeamStats['possession']; 
+
+			$possH = round( $homeTeamStats['possession'] * 100 / $possHplusA );
+			$possA = round( $awayTeamStats['possession'] * 100 / $possAplusH );
 
 			$q = $db->prepare('INSERT INTO matches (h_team, h_goals, h_shots, h_shotsot, h_possession, h_interceptions, h_corners, h_passes, h_passescp, h_fouls, h_ycards, h_rcards, h_distance,
 													a_team, a_goals, a_shots, a_shotsot, a_possession, a_interceptions, a_corners, a_passes, a_passescp, a_fouls, a_ycards, a_rcards, a_distance) 
@@ -334,7 +342,7 @@ class MatchController extends AppController {
 			$q->bindValue(":h_goals", $homeTeamStats['goals']);
 			$q->bindValue(":h_shots", $homeTeamStats['shots']);
 			$q->bindValue(":h_shotsot", $homeTeamStats['shotsOnGoal']);
-			$q->bindValue(":h_possession", $homeTeamStats['possession']);
+			$q->bindValue(":h_possession", $possH);
 			$q->bindValue(":h_interceptions", $homeTeamStats['interceptions']);
 			$q->bindValue(":h_corners", $homeTeamStats['corners']);
 			$q->bindValue(":h_passes", $homeTeamStats['passes']);
@@ -347,7 +355,7 @@ class MatchController extends AppController {
 			$q->bindValue(":a_goals", $awayTeamStats['goals']);
 			$q->bindValue(":a_shots", $awayTeamStats['shots']);
 			$q->bindValue(":a_shotsot", $awayTeamStats['shotsOnGoal']);
-			$q->bindValue(":a_possession", $awayTeamStats['possession']);
+			$q->bindValue(":a_possession", $possA);
 			$q->bindValue(":a_interceptions", $awayTeamStats['interceptions']);
 			$q->bindValue(":a_corners", $awayTeamStats['corners']);
 			$q->bindValue(":a_passes", $awayTeamStats['passes']);
@@ -423,14 +431,17 @@ class MatchController extends AppController {
 
 	    	foreach($playerPositions as $k => $playerPosition) {
 
-		    	$q = $db->prepare('INSERT INTO match_positions (match_id, steam_id, position) VALUES (:match_id, :steam_id, :position)');
+		    	$q = $db->prepare('INSERT INTO match_positions (match_id, steam_id, position, team) VALUES (:match_id, :steam_id, :position, :team)');
 		
 				$q->bindValue(":match_id", $matchId);
 				$q->bindValue(":steam_id", $playerPosition['steamId']);
 				$q->bindValue(":position", $playerPosition['position']);
+				$q->bindValue(":team", $playerPosition['team']);
 				$q->execute();
 
 			}
+
+
 
 			// ========= Store JSON filename for filter ========= //
 
