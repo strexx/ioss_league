@@ -109,21 +109,12 @@ class PageController extends AppController {
         $db = Zend_Registry::get('db');
 
         // Queries
-<<<<<<< HEAD
-        $q = $db->prepare('SELECT * FROM transfers ORDER BY period');
-        $q->execute();
-        $transfers = $q->fetchAll(PDO::FETCH_ASSOC);
-
-        // Views
-        $this->view->transfers = $transfers;
-=======
         $q = $db->prepare('SELECT * FROM punishments ORDER BY date');
         $q->execute();
         $punishments = $q->fetchAll(PDO::FETCH_ASSOC);
 
         // Views
         $this->view->punishments = $punishments;
->>>>>>> 35021efbfe1988b7eddae0cdfa55c96ca454e757
     }
 
     public function rulesAction()

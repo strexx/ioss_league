@@ -169,3 +169,9 @@ function pycopy($src, $dest) {
 
     curl_close($ch);
 }
+
+function divide($x, $y) {
+    if ( $y === 0 ) 
+        return 0;
+    return $x / $y * 100;
+}

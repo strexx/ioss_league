@@ -38,15 +38,10 @@ class JsonController extends Cms {
 		        	$getJson = file_get_contents($fileUrl);
 		        	$jsonData = json_decode($getJson, true);
 
-		        	// ========= Home team ========= //
-
-			    	$homeTeamStatsArr = $jsonData['homeTeam']['statistics'];
-
-			    	$homeTeamName = $jsonData['homeTeam']['info']['name'];
-			    	$homeTeamMatchEvents = $jsonData['homeTeam']['matchEvents'];
-			    	$homeTeamPlayers = $jsonData['homeTeam']['players'];
-
 			    	// ========= Get hometeam stats ========= //
+			    	
+			    	$homeTeamStatsArr = $jsonData['matchData']['teams'][0]['statistics'];
+			    	$homeTeamName = $jsonData['matchData']['teams'][0]['info']['name'];
 
 			    	$homeTeamStats = array('name' => $homeTeamName,
 			    						  'redCards' => $homeTeamStatsArr['0'],
@@ -74,7 +69,7 @@ class JsonController extends Cms {
 			        					  'possession' => $homeTeamStatsArr['22'],
 			        					  'distanceCovered' => $homeTeamStatsArr['23']);
 
-					// ========= Store hometeam stats general data ========= //
+					// ========= Store hometeam stats data ========= //
 
 					if( !empty($homeTeamStats) ) {
 
@@ -93,54 +88,173 @@ class JsonController extends Cms {
 						$q->bindValue(":fouls", $homeTeamStats['fouls']);
 						$q->bindValue(":ycards", $homeTeamStats['yellowCards']);
 						$q->bindValue(":rcards", $homeTeamStats['redCards']);
-						$q->bindValue(":club", 'NextGen');
+						$q->bindValue(":club", $homeTeamName);
 						$q->execute();
 
 					}
-					
-					// ========= Get home players data ========= //
 
-					$homePlayersInfo = array();
+					// ========= Get awayteam stats ========= //
 
-					foreach ($homeTeamPlayers as $k => $player) {
+			    	$awayTeamStatsArr = $jsonData['matchData']['teams'][1]['statistics'];
+			    	$awayTeamName = $jsonData['matchData']['teams'][1]['info']['name'];
 
-						$homePlayersInfo[$k]['steamIdUint64'] = $player['info']['steamIdUint64'];
-						$homePlayersInfo[$k]['name'] = $player['info']['name'];
-						$homePlayersInfo[$k]['redCards'] = $player['statistics']['0'];
-						$homePlayersInfo[$k]['yellowCards'] = $player['statistics']['1'];
-						$homePlayersInfo[$k]['fouls'] = $player['statistics']['2'];
-						$homePlayersInfo[$k]['foulsSuffered'] = $player['statistics']['3'];
-						$homePlayersInfo[$k]['slidingTackles'] = $player['statistics']['4'];
-						$homePlayersInfo[$k]['slidingTacklesCompleted'] = $player['statistics']['5'];
-						$homePlayersInfo[$k]['goalsConceded'] = $player['statistics']['6'];
-						$homePlayersInfo[$k]['shots'] = $player['statistics']['7'];
-						$homePlayersInfo[$k]['shotsOnGoal'] = $player['statistics']['8'];
-						$homePlayersInfo[$k]['passesCompleted'] = $player['statistics']['9'];
-						$homePlayersInfo[$k]['interceptions'] = $player['statistics']['10'];
-						$homePlayersInfo[$k]['goals'] = $player['statistics']['11'];
-						$homePlayersInfo[$k]['ownGoals'] = $player['statistics']['12'];
-						$homePlayersInfo[$k]['assists'] = $player['statistics']['13'];
-						$homePlayersInfo[$k]['passes'] = $player['statistics']['14'];
-						$homePlayersInfo[$k]['freeKicks'] = $player['statistics']['15'];
-						$homePlayersInfo[$k]['penalties'] = $player['statistics']['16'];
-						$homePlayersInfo[$k]['corners'] = $player['statistics']['17'];
-						$homePlayersInfo[$k]['throwIns'] = $player['statistics']['18'];
-						$homePlayersInfo[$k]['keeperSaves'] = $player['statistics']['19'];
-						$homePlayersInfo[$k]['goalKicks'] = $player['statistics']['20'];
-						$homePlayersInfo[$k]['possession'] = $player['statistics']['21'];
-						$awayPlayersInfo[$k]['distanceCovered'] = $player['statistics']['22'];
+			    	$awayTeamStats = array('name' => $awayTeamName,
+							  'redCards' => $awayTeamStatsArr['0'],
+							  'yellowCards' => $awayTeamStatsArr['1'],
+							  'fouls' => $awayTeamStatsArr['2'],
+							  'foulsSuffered' => $awayTeamStatsArr['3'],
+							  'slidingTackles' => $awayTeamStatsArr['4'],
+							  'slidingTacklesCompleted' => $awayTeamStatsArr['5'],
+							  'goalsConceded' => $awayTeamStatsArr['6'],
+							  'shots' => $awayTeamStatsArr['7'],
+							  'shotsOnGoal' => $awayTeamStatsArr['8'],
+							  'passesCompleted' => $awayTeamStatsArr['9'],
+							  'interceptions' => $awayTeamStatsArr['10'],
+							  'offsides' => $awayTeamStatsArr['11'],
+							  'goals' => $awayTeamStatsArr['12'],
+							  'ownGoals' => $awayTeamStatsArr['13'],
+							  'assists' => $awayTeamStatsArr['14'],
+							  'passes' => $awayTeamStatsArr['15'],
+							  'freeKicks' => $awayTeamStatsArr['16'],
+							  'penalties' => $awayTeamStatsArr['17'],
+							  'corners' => $awayTeamStatsArr['18'],
+							  'throwIns' => $awayTeamStatsArr['19'],
+							  'keeperSaves' => $awayTeamStatsArr['20'],
+							  'goalKicks' => $awayTeamStatsArr['21'],
+							  'possession' => $awayTeamStatsArr['22'],
+							  'distanceCovered' => $awayTeamStatsArr['23']);
+
+					// ========= Store awayteam stats general data ========= //
+
+					if( !empty($awayTeamStats) ) {
+
+						$q = $db->prepare('UPDATE clubs SET shots = shots + :shots,
+												  shotsot = shotsot + :shotsot, 
+												  passes = passes + :passes, 
+												  passescp = passescp + :passescp,
+												  fouls = fouls + :fouls, 
+												  ycards = ycards + :ycards, 
+												  rcards = rcards + :rcards
+												  WHERE club = :club');
+						$q->bindValue(":shots", $awayTeamStats['shots']);
+						$q->bindValue(":shotsot", $awayTeamStats['shotsOnGoal']);
+						$q->bindValue(":passes", $awayTeamStats['passes']);
+						$q->bindValue(":passescp", $awayTeamStats['passesCompleted']);
+						$q->bindValue(":fouls", $awayTeamStats['fouls']);
+						$q->bindValue(":ycards", $awayTeamStats['yellowCards']);
+						$q->bindValue(":rcards", $awayTeamStats['redCards']);
+						$q->bindValue(":club", $awayTeamName);
+						$q->execute();
 
 					}
 
+			    	// ========= Team players home and away ========== //
+
+			    	$homeTeamPlayers = array();
+			    	$awayTeamPlayers = array();
+			    	$playerPositions = array();
+
+			    	$homeTeamPlayersDetail = array();
+			    	$awayTeamPlayersDetail = array();
+
+			    	$players = $jsonData['matchData']['players'];
+
+			    	foreach($players as $k => $player) {
+
+			    		if(!empty($player['matchPeriodData']))
+			    		{
+				    		$team = $player['matchPeriodData'][0]['info']['team'];
+				    		if($team == 'home') {
+								
+								$playerPositions[$k]['steamId'] = $player['info']['steamId'];
+								$playerPositions[$k]['position'] = $player['matchPeriodData'][0]['info']['position'];
+
+								$homeTeamPlayersDetail[$k]['steamId'] = $player['info']['steamId'];
+								$homeTeamPlayersDetail[$k]['shots'] = $player['matchPeriodData'][0]['statistics']['7'] + $player['matchPeriodData'][1]['statistics']['7'];
+								$homeTeamPlayersDetail[$k]['shotsOnGoal'] = $player['matchPeriodData'][0]['statistics']['8'] + $player['matchPeriodData'][1]['statistics']['8'];
+								$homeTeamPlayersDetail[$k]['passes'] = $player['matchPeriodData'][0]['statistics']['15'] + $player['matchPeriodData'][1]['statistics']['15'];
+								$homeTeamPlayersDetail[$k]['passesCompleted'] = $player['matchPeriodData'][0]['statistics']['9'] + $player['matchPeriodData'][1]['statistics']['9'];
+								$homeTeamPlayersDetail[$k]['distanceCovered'] = $player['matchPeriodData'][0]['statistics']['23'] + $player['matchPeriodData'][1]['statistics']['23'];
+
+								$homeTeamPlayers[$k]['playerName'] = $player['info']['name'];
+								$homeTeamPlayers[$k]['steamId'] = $player['info']['steamId'];
+								$homeTeamPlayers[$k]['redCards'] = $player['matchPeriodData'][0]['statistics']['0'] + $player['matchPeriodData'][1]['statistics']['0'];
+								$homeTeamPlayers[$k]['yellowCards'] = $player['matchPeriodData'][0]['statistics']['1'] + $player['matchPeriodData'][1]['statistics']['1'];
+								$homeTeamPlayers[$k]['fouls'] = $player['matchPeriodData'][0]['statistics']['2'] + $player['matchPeriodData'][1]['statistics']['2'];
+								$homeTeamPlayers[$k]['foulsSuffered'] = $player['matchPeriodData'][0]['statistics']['3'] + $player['matchPeriodData'][1]['statistics']['3'];
+								$homeTeamPlayers[$k]['slidingTackles'] = $player['matchPeriodData'][0]['statistics']['4'] + $player['matchPeriodData'][1]['statistics']['4'];
+								$homeTeamPlayers[$k]['slidingTacklesCompleted'] = $player['matchPeriodData'][0]['statistics']['5'] + $player['matchPeriodData'][1]['statistics']['5'];
+								$homeTeamPlayers[$k]['goalsConceded'] = $player['matchPeriodData'][0]['statistics']['6'] + $player['matchPeriodData'][1]['statistics']['6'];
+								$homeTeamPlayers[$k]['shots'] = $player['matchPeriodData'][0]['statistics']['7'] + $player['matchPeriodData'][1]['statistics']['7'];
+								$homeTeamPlayers[$k]['shotsOnGoal'] = $player['matchPeriodData'][0]['statistics']['8'] + $player['matchPeriodData'][1]['statistics']['8'];
+								$homeTeamPlayers[$k]['passesCompleted'] = $player['matchPeriodData'][0]['statistics']['9'] + $player['matchPeriodData'][1]['statistics']['9'];
+								$homeTeamPlayers[$k]['interceptions'] = $player['matchPeriodData'][0]['statistics']['10'] + $player['matchPeriodData'][1]['statistics']['10'];
+								$homeTeamPlayers[$k]['offsides'] = $player['matchPeriodData'][0]['statistics']['11'] + $player['matchPeriodData'][1]['statistics']['11'];
+								$homeTeamPlayers[$k]['goals'] = $player['matchPeriodData'][0]['statistics']['12'] + $player['matchPeriodData'][1]['statistics']['12'];
+								$homeTeamPlayers[$k]['ownGoals'] = $player['matchPeriodData'][0]['statistics']['13'] + $player['matchPeriodData'][1]['statistics']['13'];
+								$homeTeamPlayers[$k]['assists'] = $player['matchPeriodData'][0]['statistics']['14'] + $player['matchPeriodData'][1]['statistics']['14'];
+								$homeTeamPlayers[$k]['passes'] = $player['matchPeriodData'][0]['statistics']['15'] + $player['matchPeriodData'][1]['statistics']['15'];
+								$homeTeamPlayers[$k]['freeKicks'] = $player['matchPeriodData'][0]['statistics']['16'] + $player['matchPeriodData'][1]['statistics']['16'];
+								$homeTeamPlayers[$k]['penalties'] = $player['matchPeriodData'][0]['statistics']['17'] + $player['matchPeriodData'][1]['statistics']['17'];
+								$homeTeamPlayers[$k]['corners'] = $player['matchPeriodData'][0]['statistics']['18'] + $player['matchPeriodData'][1]['statistics']['18'];
+								$homeTeamPlayers[$k]['throwIns'] = $player['matchPeriodData'][0]['statistics']['19'] + $player['matchPeriodData'][1]['statistics']['19'];
+								$homeTeamPlayers[$k]['keeperSaves'] = $player['matchPeriodData'][0]['statistics']['20'] + $player['matchPeriodData'][1]['statistics']['20'];
+								$homeTeamPlayers[$k]['goalKicks'] = $player['matchPeriodData'][0]['statistics']['21'] + $player['matchPeriodData'][1]['statistics']['21'];
+								$homeTeamPlayers[$k]['possession'] = $player['matchPeriodData'][0]['statistics']['22'] + $player['matchPeriodData'][1]['statistics']['22'];
+								$homeTeamPlayers[$k]['distanceCovered'] = $player['matchPeriodData'][0]['statistics']['23'] + $player['matchPeriodData'][1]['statistics']['23'];
+							}
+							elseif($team == 'away') {
+								$playerPositions[$k]['steamId'] = $player['info']['steamId'];
+								$playerPositions[$k]['position'] = $player['matchPeriodData'][0]['info']['position'];
+
+								$awayTeamPlayersDetail[$k]['steamId'] = $player['info']['steamId'];
+								$awayTeamPlayersDetail[$k]['shots'] = $player['matchPeriodData'][0]['statistics']['7'] + $player['matchPeriodData'][1]['statistics']['7'];
+								$awayTeamPlayersDetail[$k]['shotsOnGoal'] = $player['matchPeriodData'][0]['statistics']['8'] + $player['matchPeriodData'][1]['statistics']['8'];
+								$awayTeamPlayersDetail[$k]['passes'] = $player['matchPeriodData'][0]['statistics']['15'] + $player['matchPeriodData'][1]['statistics']['15'];
+								$awayTeamPlayersDetail[$k]['passesCompleted'] = $player['matchPeriodData'][0]['statistics']['9'] + $player['matchPeriodData'][1]['statistics']['9'];
+								$awayTeamPlayersDetail[$k]['distanceCovered'] = $player['matchPeriodData'][0]['statistics']['23'] + $player['matchPeriodData'][1]['statistics']['23'];
+
+
+								$awayTeamPlayers[$k]['playerName'] = $player['info']['name'];
+								$awayTeamPlayers[$k]['steamId'] = $player['info']['steamId'];
+								$awayTeamPlayers[$k]['redCards'] = $player['matchPeriodData'][0]['statistics']['0'] + $player['matchPeriodData'][1]['statistics']['0'];
+								$awayTeamPlayers[$k]['yellowCards'] = $player['matchPeriodData'][0]['statistics']['1'] + $player['matchPeriodData'][1]['statistics']['1'];
+								$awayTeamPlayers[$k]['fouls'] = $player['matchPeriodData'][0]['statistics']['2'] + $player['matchPeriodData'][1]['statistics']['2'];
+								$awayTeamPlayers[$k]['foulsSuffered'] = $player['matchPeriodData'][0]['statistics']['3'] + $player['matchPeriodData'][1]['statistics']['3'];
+								$awayTeamPlayers[$k]['slidingTackles'] = $player['matchPeriodData'][0]['statistics']['4'] + $player['matchPeriodData'][1]['statistics']['4'];
+								$awayTeamPlayers[$k]['slidingTacklesCompleted'] = $player['matchPeriodData'][0]['statistics']['5'] + $player['matchPeriodData'][1]['statistics']['5'];
+								$awayTeamPlayers[$k]['goalsConceded'] = $player['matchPeriodData'][0]['statistics']['6'] + $player['matchPeriodData'][1]['statistics']['6'];
+								$awayTeamPlayers[$k]['shots'] = $player['matchPeriodData'][0]['statistics']['7'] + $player['matchPeriodData'][1]['statistics']['7'];
+								$awayTeamPlayers[$k]['shotsOnGoal'] = $player['matchPeriodData'][0]['statistics']['8'] + $player['matchPeriodData'][1]['statistics']['8'];
+								$awayTeamPlayers[$k]['passesCompleted'] = $player['matchPeriodData'][0]['statistics']['9'] + $player['matchPeriodData'][1]['statistics']['9'];
+								$awayTeamPlayers[$k]['interceptions'] = $player['matchPeriodData'][0]['statistics']['10'] + $player['matchPeriodData'][1]['statistics']['10'];
+								$awayTeamPlayers[$k]['offsides'] = $player['matchPeriodData'][0]['statistics']['11'] + $player['matchPeriodData'][1]['statistics']['11'];
+								$awayTeamPlayers[$k]['goals'] = $player['matchPeriodData'][0]['statistics']['12'] + $player['matchPeriodData'][1]['statistics']['12'];
+								$awayTeamPlayers[$k]['ownGoals'] = $player['matchPeriodData'][0]['statistics']['13'] + $player['matchPeriodData'][1]['statistics']['13'];
+								$awayTeamPlayers[$k]['assists'] = $player['matchPeriodData'][0]['statistics']['14'] + $player['matchPeriodData'][1]['statistics']['14'];
+								$awayTeamPlayers[$k]['passes'] = $player['matchPeriodData'][0]['statistics']['15'] + $player['matchPeriodData'][1]['statistics']['15'];
+								$awayTeamPlayers[$k]['freeKicks'] = $player['matchPeriodData'][0]['statistics']['16'] + $player['matchPeriodData'][1]['statistics']['16'];
+								$awayTeamPlayers[$k]['penalties'] = $player['matchPeriodData'][0]['statistics']['17'] + $player['matchPeriodData'][1]['statistics']['17'];
+								$awayTeamPlayers[$k]['corners'] = $player['matchPeriodData'][0]['statistics']['18'] + $player['matchPeriodData'][1]['statistics']['18'];
+								$awayTeamPlayers[$k]['throwIns'] = $player['matchPeriodData'][0]['statistics']['19'] + $player['matchPeriodData'][1]['statistics']['19'];
+								$awayTeamPlayers[$k]['keeperSaves'] = $player['matchPeriodData'][0]['statistics']['20'] + $player['matchPeriodData'][1]['statistics']['20'];
+								$awayTeamPlayers[$k]['goalKicks'] = $player['matchPeriodData'][0]['statistics']['21'] + $player['matchPeriodData'][1]['statistics']['21'];
+								$awayTeamPlayers[$k]['possession'] = $player['matchPeriodData'][0]['statistics']['22'] + $player['matchPeriodData'][1]['statistics']['22'];
+								$awayTeamPlayers[$k]['distanceCovered'] = $player['matchPeriodData'][0]['statistics']['23'] + $player['matchPeriodData'][1]['statistics']['23'];
+							}
+						}
+
+			    	}
+
 					// ========= Store hometeam player stats ========= //
 
-					foreach($homePlayersInfo as $k => $homePlayerStats) {
+					foreach($homeTeamPlayers as $k => $homePlayerStats) {
 
 						$q = $db->prepare('UPDATE players SET games = games + :games,
 												  goals = goals + :goals, 
-												  assists = assists + :assists, 
-												  passescp = passescp + :passescp,
-												  shots = shots + :shots, 
+												  assists = assists + :assists,
+												  shots = shots + :shots,
+												  shotsot = shotsot + :shotsot, 
 												  passes = passes + :passes, 
 												  passescp = passescp + :passescp, 
 												  interceptions = interceptions + :interceptions,
@@ -164,112 +278,20 @@ class JsonController extends Cms {
 						$q->bindValue(":foulssuf", $homePlayerStats['foulsSuffered']);
 						$q->bindValue(":ycards", $homePlayerStats['yellowCards']);
 						$q->bindValue(":rcards", $homePlayerStats['redCards']);
-						$q->bindValue(":steam_id", $homePlayerStats['steamIdUint64']);
+						$q->bindValue(":steam_id", $homePlayerStats['steamId']);
 						$q->execute();
-
-					}
-
-			    	// ========= Away team ========= //
-
-			    	$awayTeamStatsArr = $jsonData['awayTeam']['statistics'];
-			    	$awayTeamName = $jsonData['awayTeam']['info']['name'];
-			    	$awayTeamPlayers = $jsonData['awayTeam']['players'];
-
-			    	// ========= Get awayteam stats ========= //
-
-			    	$awayTeamStats = array('name' => $awayTeamName,
-			    						  'redCards' => $awayTeamStatsArr['0'],
-			        					  'yellowCards' => $awayTeamStatsArr['1'],
-			        					  'fouls' => $awayTeamStatsArr['2'],
-			        					  'foulsSuffered' => $awayTeamStatsArr['3'],
-			        					  'slidingTackles' => $awayTeamStatsArr['4'],
-			        					  'slidingTacklesCompleted' => $awayTeamStatsArr['5'],
-			        					  'goalsConceded' => $awayTeamStatsArr['6'],
-			        					  'shots' => $awayTeamStatsArr['7'],
-			        					  'shotsOnGoal' => $awayTeamStatsArr['8'],
-			        					  'passesCompleted' => $awayTeamStatsArr['9'],
-			        					  'interceptions' => $awayTeamStatsArr['10'],
-			        					  'offsides' => $awayTeamStatsArr['11'],
-			        					  'goals' => $awayTeamStatsArr['12'],
-			        					  'ownGoals' => $awayTeamStatsArr['13'],
-			        					  'assists' => $awayTeamStatsArr['14'],
-			        					  'passes' => $awayTeamStatsArr['15'],
-			        					  'freeKicks' => $awayTeamStatsArr['16'],
-			        					  'penalties' => $awayTeamStatsArr['17'],
-			        					  'corners' => $awayTeamStatsArr['18'],
-			        					  'throwIns' => $awayTeamStatsArr['19'],
-			        					  'keeperSaves' => $awayTeamStatsArr['20'],
-			        					  'goalKicks' => $awayTeamStatsArr['21'],
-			        					  'possession' => $awayTeamStatsArr['22'],
-			        					  'distanceCovered' => $awayTeamStatsArr['23']);
-
-					// ========= Store awayteam stats general data ========= //
-
-					if( !empty($awayTeamStats) ) {
-
-						$q = $db->prepare('UPDATE clubs SET shots = shots + :shots,
-												  shotsot = shotsot + :shotsot, 
-												  passes = passes + :passes, 
-												  passescp = passescp + :passescp,
-												  fouls = fouls + :fouls, 
-												  ycards = ycards + :ycards, 
-												  rcards = rcards + :rcards
-												  WHERE club = :club');
-						$q->bindValue(":shots", $awayTeamStats['shots']);
-						$q->bindValue(":shotsot", $awayTeamStats['shotsOnGoal']);
-						$q->bindValue(":passes", $awayTeamStats['passes']);
-						$q->bindValue(":passescp", $awayTeamStats['passesCompleted']);
-						$q->bindValue(":fouls", $awayTeamStats['fouls']);
-						$q->bindValue(":ycards", $awayTeamStats['yellowCards']);
-						$q->bindValue(":rcards", $awayTeamStats['redCards']);
-						$q->bindValue(":club", 'Bears');
-						$q->execute();
-
-					}
-					
-					// ========= Get away players data ========= //
-
-					$awayPlayersInfo = array();
-
-					foreach ($awayTeamPlayers as $k => $player) {
-
-						$awayPlayersInfo[$k]['steamIdUint64'] = $player['info']['steamIdUint64'];
-						$awayPlayersInfo[$k]['name'] = $player['info']['name'];
-						$awayPlayersInfo[$k]['redCards'] = $player['statistics']['0'];
-						$awayPlayersInfo[$k]['yellowCards'] = $player['statistics']['1'];
-						$awayPlayersInfo[$k]['fouls'] = $player['statistics']['2'];
-						$awayPlayersInfo[$k]['foulsSuffered'] = $player['statistics']['3'];
-						$awayPlayersInfo[$k]['slidingTackles'] = $player['statistics']['4'];
-						$awayPlayersInfo[$k]['slidingTacklesCompleted'] = $player['statistics']['5'];
-						$awayPlayersInfo[$k]['goalsConceded'] = $player['statistics']['6'];
-						$awayPlayersInfo[$k]['shots'] = $player['statistics']['7'];
-						$awayPlayersInfo[$k]['shotsOnGoal'] = $player['statistics']['8'];
-						$awayPlayersInfo[$k]['passesCompleted'] = $player['statistics']['9'];
-						$awayPlayersInfo[$k]['interceptions'] = $player['statistics']['10'];
-						$awayPlayersInfo[$k]['goals'] = $player['statistics']['11'];
-						$awayPlayersInfo[$k]['ownGoals'] = $player['statistics']['12'];
-						$awayPlayersInfo[$k]['assists'] = $player['statistics']['13'];
-						$awayPlayersInfo[$k]['passes'] = $player['statistics']['14'];
-						$awayPlayersInfo[$k]['freeKicks'] = $player['statistics']['15'];
-						$awayPlayersInfo[$k]['penalties'] = $player['statistics']['16'];
-						$awayPlayersInfo[$k]['corners'] = $player['statistics']['17'];
-						$awayPlayersInfo[$k]['throwIns'] = $player['statistics']['18'];
-						$awayPlayersInfo[$k]['keeperSaves'] = $player['statistics']['19'];
-						$awayPlayersInfo[$k]['goalKicks'] = $player['statistics']['20'];
-						$awayPlayersInfo[$k]['possession'] = $player['statistics']['21'];
-						$awayPlayersInfo[$k]['distanceCovered'] = $player['statistics']['22'];
 
 					}
 
 					// ========= Store hometeam player stats ========= //
 
-					foreach($awayPlayersInfo as $k => $awayPlayerStats) {
+					foreach($awayTeamPlayers as $k => $awayPlayerStats) {
 
 						$q = $db->prepare('UPDATE players SET games = games + :games,
 												  goals = goals + :goals, 
-												  assists = assists + :assists, 
-												  passescp = passescp + :passescp,
-												  shots = shots + :shots, 
+												  assists = assists + :assists,
+												  shots = shots + :shots,
+												  shotsot = shotsot + :shotsot, 
 												  passes = passes + :passes, 
 												  passescp = passescp + :passescp, 
 												  interceptions = interceptions + :interceptions,
@@ -293,7 +315,7 @@ class JsonController extends Cms {
 						$q->bindValue(":foulssuf", $awayPlayerStats['foulsSuffered']);
 						$q->bindValue(":ycards", $awayPlayerStats['yellowCards']);
 						$q->bindValue(":rcards", $awayPlayerStats['redCards']);
-						$q->bindValue(":steam_id", $awayPlayerStats['steamIdUint64']);
+						$q->bindValue(":steam_id", $awayPlayerStats['steamId']);
 						$q->execute();
 
 					}
@@ -304,7 +326,6 @@ class JsonController extends Cms {
 															a_team, a_goals, a_shots, a_shotsot, a_possession, a_interceptions, a_corners, a_passes, a_passescp, a_fouls, a_ycards, a_rcards, a_distance) 
 									   VALUES (:h_team, :h_goals, :h_shots, :h_shotsot, :h_possession, :h_interceptions, :h_corners, :h_passes, :h_passescp, :h_fouls, :h_ycards, :h_rcards, :h_distance,
 									   		   :a_team, :a_goals, :a_shots, :a_shotsot, :a_possession, :a_interceptions, :a_corners, :a_passes, :a_passescp, :a_fouls, :a_ycards, :a_rcards, :a_distance)');
-
 					$q->bindValue(":h_team", $homeTeamName);
 					$q->bindValue(":h_goals", $homeTeamStats['goals']);
 					$q->bindValue(":h_shots", $homeTeamStats['shots']);
@@ -332,6 +353,80 @@ class JsonController extends Cms {
 					$q->bindValue(":a_rcards", $awayTeamStats['redCards']);
 					$q->bindValue(":a_distance", $awayTeamStats['distanceCovered']);
 					$q->execute();
+
+					// Match ID
+					$matchId = $db->fetchOne("SELECT id FROM matches ORDER BY id DESC LIMIT 1");
+
+					// ========= Store player detail data ========= //
+
+					foreach($homeTeamPlayersDetail as $k => $homeTeamPlayerDetail) {
+
+						$shotsOnGoalsPercentage = round(divide($homeTeamPlayerDetail['shotsOnGoal'], $homeTeamPlayerDetail['shots']));
+						$passesCompletedPercentage = round(divide($homeTeamPlayerDetail['passesCompleted'], $homeTeamPlayerDetail['passes']));
+						$distanceCovered = $homeTeamPlayerDetail['distanceCovered'] / 100;
+						$distance = round( $distanceCovered, 1, PHP_ROUND_HALF_UP );
+
+						$q = $db->prepare('INSERT INTO match_detail (match_id, steam_id, shotsot, passescp, distancecovered) VALUES (:match_id, :steam_id, :shotsot, :passescp, :distancecovered)');
+						$q->bindValue(":match_id", $matchId);
+						$q->bindValue(":steam_id", $homeTeamPlayerDetail['steamId']);
+						$q->bindValue(":shotsot", $shotsOnGoalsPercentage);
+						$q->bindValue(":passescp", $passesCompletedPercentage);
+						$q->bindValue(":distancecovered", $distance);
+						$q->execute();
+					}
+
+					foreach($awayTeamPlayersDetail as $k => $awayTeamPlayerDetail) {
+						$shotsOnGoalsPercentage = round(divide($awayTeamPlayerDetail['shotsOnGoal'], $awayTeamPlayerDetail['shots']));
+						$passesCompletedPercentage = round(divide($awayTeamPlayerDetail['passesCompleted'], $awayTeamPlayerDetail['passes']));
+						$distanceCovered = $awayTeamPlayerDetail['distanceCovered'] / 100;
+						$distance = round( $distanceCovered, 1, PHP_ROUND_HALF_UP );
+
+						$q = $db->prepare('INSERT INTO match_detail (match_id, steam_id, shotsot, passescp, distancecovered) VALUES (:match_id, :steam_id, :shotsot, :passescp, :distancecovered)');
+						$q->bindValue(":match_id", $matchId);
+						$q->bindValue(":steam_id", $awayTeamPlayerDetail['steamId']);
+						$q->bindValue(":shotsot", $shotsOnGoalsPercentage);
+						$q->bindValue(":passescp", $passesCompletedPercentage);
+						$q->bindValue(":distancecovered", $distance);
+						$q->execute();
+					}
+
+			    	// ========= Get match events ========= //
+
+			    	$matchEvents = array();
+			    	$events = $jsonData['matchData']['matchEvents'];
+
+			    	foreach($events as $k => $event) {
+			    		$matchEvents[$k]['minute'] = round( $event['second'] / 60 );
+			    		$matchEvents[$k]['event'] = $event['event'];
+			    		$matchEvents[$k]['period'] = $event['period'];
+			    		$matchEvents[$k]['steamId'] = $event['player1SteamId'];
+			    	}
+
+			    	// ========= Store match events ========= //
+
+			    	foreach($matchEvents as $k => $matchEvent) {
+
+				    	$q = $db->prepare('INSERT INTO match_events (match_id, minute, event, period, steam_id) VALUES (:match_id, :minute, :event, :period, :steam_id)');
+						$q->bindValue(":match_id", $matchId);
+						$q->bindValue(":minute", $matchEvent['minute']);
+						$q->bindValue(":event", $matchEvent['event']);
+						$q->bindValue(":period", $matchEvent['period']);
+						$q->bindValue(":steam_id", $matchEvent['steamId']);
+						$q->execute();
+					}
+
+			    	// ========= Store player positions ========= //
+
+			    	foreach($playerPositions as $k => $playerPosition) {
+
+				    	$q = $db->prepare('INSERT INTO match_positions (match_id, steam_id, position) VALUES (:match_id, :steam_id, :position)');
+				
+						$q->bindValue(":match_id", $matchId);
+						$q->bindValue(":steam_id", $playerPosition['steamId']);
+						$q->bindValue(":position", $playerPosition['position']);
+						$q->execute();
+
+					}
 
 					// ========= Store JSON filename for filter ========= //
 
