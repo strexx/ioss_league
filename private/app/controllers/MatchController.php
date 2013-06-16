@@ -7,10 +7,19 @@ class MatchController extends AppController {
 	 	$request = Zend_Controller_Front::getInstance()->getRequest();
         $db = Zend_Registry::get('db');
         $config = Zend_Registry::get('config');
+        $matchId = $request->id;
 
-        $matchInfo = $db->fetchRow('SELECT * FROM matches WHERE id = ?', $request->id);
-
+        // Queries
+        $matchInfo = $db->fetchRow('SELECT * FROM matches WHERE id = ?', $matchId);
+        $events = $db->fetchAll('SELECT * FROM match_events WHERE match_id = ? ORDER BY minute', $matchId);
+        $positions = $db->fetchAll('SELECT * FROM match_positions WHERE match_id = ?', $matchId);
+        $details = $db->fetchAll('SELECT * FROM match_detail WHERE match_id = ?', $matchId);
+	
+		// Views
         $this->view->matchInfo = $matchInfo;
+        $this->view->events = $events;
+        $this->view->positions = $positions;
+        $this->view->details = $details;
 	}
 
     public function loadjsonAction()

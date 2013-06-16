@@ -4,8 +4,9 @@
 			
 					<table class="table gametable">
 						<thead>
-							<tr class="gamename" ><td colspan="3">Match Events</td></tr>
+							<tr class="gamename" ><td colspan="4">Match Events</td></tr>
 							<tr>
+								<th>Period</th>
 								<th>Minute</th>
 								<th>Event</th>
 								<th>Player</th>
@@ -13,41 +14,21 @@
 						</thead>
 						
 						<tbody>
+						
+						<?php 
+							$db = Zend_Registry::get('db');
+							foreach( $this->events as $event ): 
+							$player = $db->fetchRow('SELECT * FROM players WHERE steam_id = ?', $event['steam_id']);
+						?>
 							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>								
+								<td><?php echo $event['period']; ?></td>
+								<td><?php echo $event['minute']; ?></td>
+								<td><?php echo $event['event']; ?></td>
+								<td><?php echo $player['name']; ?></td>
+							</tr>
+
+						<?php endforeach; ?>
+
 						</tbody>
 					</table>
 				</div>
