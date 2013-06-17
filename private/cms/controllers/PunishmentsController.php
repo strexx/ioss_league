@@ -1,10 +1,10 @@
 <?php
 
-class PlayersController extends Cms {
+class PunishmentsController extends Cms {
 
     public function listAction() 
     {
-        $q = $this->_db->prepare('SELECT * FROM players ORDER BY `players`.`club_id` ASC');
+        $q = $this->_db->prepare('SELECT * FROM punishments');
         $q->execute();
         
         $this->view->items = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -22,7 +22,7 @@ class PlayersController extends Cms {
 
         $this->_helper->layout()->noBox = true;
 
-        $form = $this->view->form = new PlayersForm($this->_getParam('id',false));
+        $form = $this->view->form = new PunishmentsForm($this->_getParam('id',false));
         $this->view->edit = $edit = $this->_request->getActionName() == 'edit';
         $news = $languages = array();
         
@@ -34,12 +34,14 @@ class PlayersController extends Cms {
 
             if (!$form->isValid($_POST)) break;
             
+            $data['url'] = sanitize($data['title']);
+            
             list($data) = $this->_filter($form->getValues());
 
             if ($edit)
                 $this->_merge($news, $data);
             else {
-                //$data['date_created'] = date('Y-m-d');
+                $data['date_created'] = date('Y-m-d');
                 $news = $this->_add($data);
             }
 
@@ -53,7 +55,7 @@ class PlayersController extends Cms {
     
     public function deleteAction() {
         
-        $q_delete = $this->_db->prepare('DELETE FROM players WHERE id = :id');
+        $q_delete = $this->_db->prepare('DELETE FROM punishments WHERE id = :id');
         $q_delete->bindValue(':id',$this->_getParam('id'));
         $q_delete->execute();
               

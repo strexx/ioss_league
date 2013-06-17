@@ -109,21 +109,12 @@ class PageController extends AppController {
         $db = Zend_Registry::get('db');
 
         // Queries
-<<<<<<< HEAD
-        $q = $db->prepare('SELECT * FROM transfers ORDER BY period');
-        $q->execute();
-        $transfers = $q->fetchAll(PDO::FETCH_ASSOC);
-
-        // Views
-        $this->view->transfers = $transfers;
-=======
         $q = $db->prepare('SELECT * FROM punishments ORDER BY date');
         $q->execute();
         $punishments = $q->fetchAll(PDO::FETCH_ASSOC);
 
         // Views
         $this->view->punishments = $punishments;
->>>>>>> 35021efbfe1988b7eddae0cdfa55c96ca454e757
     }
 
     public function rulesAction()
@@ -140,6 +131,16 @@ class PageController extends AppController {
     {
         //
     }
+	
+	public function matchadminAction()
+	{
+		//		
+	}
+	
+	public function staffAction()
+	{
+		//		
+	}
 
     public function pollAction()
     {
@@ -147,8 +148,8 @@ class PageController extends AppController {
         $request = Zend_Controller_Front::getInstance()->getRequest();
         $db = Zend_Registry::get('db');
                 
-        //if ($_SERVER['REMOTE_ADDR'] !== '77.248.25.223') 
-         //   die(header("Location: /"));
+        if ($_SERVER['REMOTE_ADDR'] !== '77.248.25.223') 
+            die(header("Location: /"));
 
         if( isset($_POST['submit'])) 
         {

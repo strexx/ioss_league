@@ -1,0 +1,40 @@
+	<table class="tablesorter" cellspacing="1">             
+		<thead>
+			<tr> 
+				<th class="headSort">Date</th>
+				<th class="headSort">Player</th>
+				<th class="headSort">Team</th>
+				<th class="headSort">Penalty</th>
+				<th class="headSort">Reason</th>
+			</tr> 
+		</thead> 
+		<tbody class="punishments"> 	
+		
+			<?php 
+			foreach($this->punishments as $punishment):
+        
+			echo'<tr> 
+					<td>' . $punishment['date'] . '</td> 
+					<td>' . $punishment['name'] . '</td> 
+					<td>' . $punishment['team'] . '</td> 
+					<td>' . $punishment['punishment'] . '</td> 
+					<td>' . $punishment['reason'] . '</td> 
+			</tr>';
+			endforeach;
+			?> 
+			
+		</tbody> 
+	</table>
+	
+	<script type="text/javascript">
+
+	$(function() {
+		$("table").tablesorter({ 
+			// sort on the first column and third column, order asc 
+			sortList: [[0,0],[0,0]] 
+		}); 
+	});
+
+	</script>
+
+	<script type="text/javascript" src="assets/js/jquery.tablesorter.js"></script> 

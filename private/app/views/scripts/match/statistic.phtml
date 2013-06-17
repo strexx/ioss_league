@@ -4,8 +4,9 @@
 			
 					<table class="table gametable">
 						<thead>
-							<tr class="gamename" ><td colspan="3">Match Events</td></tr>
+							<tr class="gamename" ><td colspan="4">Match Events</td></tr>
 							<tr>
+								<th>Period</th>
 								<th>Minute</th>
 								<th>Event</th>
 								<th>Player</th>
@@ -13,89 +14,82 @@
 						</thead>
 						
 						<tbody>
+						
+						<?php 
+							$db = Zend_Registry::get('db');
+							foreach( $this->events as $event ): 
+							$player = $db->fetchRow('SELECT * FROM players WHERE steam_id = ?', $event['steam_id']);
+						?>
 							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>	
-							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-							</tr>								
+								<td><?php echo $event['period']; ?></td>
+								<td><?php echo $event['minute']; ?></td>
+								<td><?php echo $event['event']; ?></td>
+								<td><?php echo $player['name']; ?></td>
+							</tr>
+
+						<?php endforeach; ?>
+
 						</tbody>
 					</table>
 				</div>
 				
-				<div id="lineup">
-					<table class="table gametable">
+				<div id="positions">
+				
+					<div class="top">
+						<table class="table gametable">
 						<thead>
-							<tr class="gamename" ><td colspan="3">Starting VII</td></tr>
+							<tr class="gamename" ><td colspan="4">Starting VII</td></tr>
 							<tr>
 								<th>Home</th>
 								<th>Away</th>
 							</tr>
-						</thead>	
-						<tbody>
-							<tr>
-								<td>GK: </td>
-								<td>GK: </td>
-							</tr>
-							<tr>
-								<td>LB: </td>
-								<td>LB: </td>
-							</tr>
-							<tr>
-								<td>RB: </td>
-								<td>RB: </td>
-							</tr>
-							<tr>
-								<td>CDM: </td>
-								<td>CDM: </td>
-							</tr>
-							<tr>
-								<td>CAM: </td>
-								<td>CAM: </td>
-							</tr>
-							<tr>
-								<td>LW: </td>
-								<td>LW: </td>
-							</tr>	
-							<tr>
-								<td>RW: </td>
-								<td>RW: </td>
-							</tr>							
-						</tbody>	
-					</table>
-						<a href="schedules"><button class="btn">Back to Fixtures</button></a>			
-				</div>
-			
-		  
+						</thead>
+						</table>
+					</div>
+					
+					<div class="left-home">
+						<br />
+						<ul>
+							<?php 
+								foreach($this->hPositions as $hPosition): 
+									$player = $db->fetchRow('SELECT * FROM players WHERE steam_id = ?', $hPosition['steam_id']);
+
+							?>
+					
+								
+									<li><?php echo $hPosition['position']; ?>: <?php echo $player['name']; ?></li>
+								
+					
+
+							<?php endforeach; ?>
+					</div>
+					
+					<div class="right-away">
+						<br />
+							<?php 
+								foreach($this->aPositions as $aPosition): 
+									$player = $db->fetchRow('SELECT * FROM players WHERE steam_id = ?', $aPosition['steam_id']);
+							?>
+								
+									<li><?php echo $aPosition['position']; ?>: <?php echo $player['name']; ?></li>
+
+
+								
+							<?php endforeach; ?>
+							
+							</ul>
+							
+							<br />
+					</div>
+					
+					<div class="buttons">
+						<a href=""><button class="btn">Index</button></a>	
+						<a href="schedules"><button class="btn">Schedules</button></a>	
+					</div>
+
+				</div>	
+
+						  
 				<div id="games">
 					<table class="table gametable">
 						<thead>
@@ -124,9 +118,9 @@
 								<td><?php echo $this->matchInfo['a_shotsot'] ?></td>
 							</tr>
 							<tr>
-								<td><?php echo $this->matchInfo['h_possession'] ?></td>
+								<td><?php echo $this->matchInfo['h_possession'] ?>%</td>
 								<td>Possession</td>
-								<td><?php echo $this->matchInfo['a_possession'] ?></td>
+								<td><?php echo $this->matchInfo['a_possession'] ?>%</td>
 							</tr>
 							<tr>
 								<td><?php echo $this->matchInfo['h_interceptions'] ?></td>
@@ -134,7 +128,7 @@
 								<td><?php echo $this->matchInfo['a_interceptions'] ?></td>
 							</tr>
 							<tr>
-								<td><?php echo $this->matchInfo['h_passes'] ?></td>
+								<td><?php echo $this->matchInfo['h_corners'] ?></td>
 								<td>Corners</td>
 								<td><?php echo $this->matchInfo['a_corners'] ?></td>
 							</tr>
@@ -171,4 +165,5 @@
 						</tbody>		
 					</table>			
 				</div>
+				
 			</div>

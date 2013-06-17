@@ -16,11 +16,11 @@
 	<tbody class="standingrank"> 
 	
 			<?php 
-			foreach( $this->standings as $standing ):
+			foreach($this->standings as $standing):
         
 			echo'<tr> 
 					<td>' . $standing['position'] . '</td> 
-					<td>' . $standing['club'] . '</td> 
+					<td><a href="' . $this->baseurl . 'club/' . $standing['tag'] . '">' . $standing['club'] . '</td> 
 					<td>' . $standing['games'] . '</td> 
 					<td>' . $standing['won'] . '</td> 
 					<td>' . $standing['draw'] . '</td> 

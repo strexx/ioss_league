@@ -97,7 +97,7 @@ html[xmlns] .clearfix {
         #menu .nav li a {
             display: block;
             background: url('../img/menu-top-bg-2.png') repeat-x;
-            padding: 20px 11.2px;
+            padding: 20px 11.5px;
             text-decoration: none;
             text-transform: uppercase;
             color: #40476b;
@@ -614,7 +614,7 @@ html[xmlns] .clearfix {
     }
     
     #games {
-        width: 350px;
+        width: 300px;
         text-align: center;
     }
     
@@ -655,9 +655,10 @@ html[xmlns] .clearfix {
     .gamename td {
         text-align: center;
         font-family: Verdana;
-        font-size: 19px;
+        font-size: 12px;
+		font-weight: 900;
         padding: 15px;
-        word-spacing: 5px;
+        word-spacing: 1px;
     }
     
     #lineup {
@@ -669,7 +670,7 @@ html[xmlns] .clearfix {
     
     #events {
         float: right;
-        width: 300px;
+        width: 350px;
         text-align: center;
     }
 	
@@ -715,3 +716,35 @@ html[xmlns] .clearfix {
         color: white;
     }
     
+	#positions{
+	    float: right;
+        width: 300px;
+        margin: 0 15px 0 0;
+		font-family: calibri;
+        font-size: 16px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.4);
+	}
+	
+	.top{
+	    color: #fff;
+        background: url('../img/menu-top-bg.png') repeat-x;
+	}
+	
+	.left-home{
+		float: left;
+		width: 150px;
+		line-height: 25px;
+		list-style-type: none;
+	}
+	
+	.right-away{
+		float: left;
+		width: 150px;
+		line-height: 25px;
+		list-style-type: none;
+	}
+	
+	.buttons {
+		margin: 0 0 40px 0;
+	}

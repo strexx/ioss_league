@@ -50,8 +50,8 @@ return array(
 	    )
 	),
 	
-		'transfers' => array(
-	    'name'  => 'Transfers',
+		'punishments' => array(
+	    'name'  => 'Punishments',
 	    'items' => array(
                 'list' => 'Overview',
                 'add' => 'Add',

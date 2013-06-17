@@ -28,7 +28,11 @@ class PlayersForm extends Sparx_BaseForm
         $element = new Sparx_SimpleText('steam_id');
         $element->setMedium();
         $this->addElement($element);
-
+		
+		$element = new Sparx_SimpleText('steam_id64');
+        $element->setMedium();
+        $this->addElement($element);
+		
         $element = new Sparx_SimpleText('nation');
         $element->setMedium();
         $this->addElement($element);

@@ -15,7 +15,9 @@ return array(
     'media' => new Zend_Controller_Router_Route('/media', array('controller' => 'page','action' => 'media')),
     'irc' => new Zend_Controller_Router_Route('/irc', array('controller' => 'page','action' => 'irc')),
     'poll' => new Zend_Controller_Router_Route('/poll', array('controller' => 'page','action' => 'poll')),
-
+	'matchadmin' => new Zend_Controller_Router_Route('/matchadmin', array('controller' => 'page', 'action' => 'matchadmin')),
+	'staff' => new Zend_Controller_Router_Route('/staff', array('controller' => 'page', 'action' => 'staff')),
+	
     // Clubs
     'club' => new Zend_Controller_Router_Route('/club/:club', array('controller' => 'club', 'action' => 'overview')),
     'profile' => new Zend_Controller_Router_Route('/profile/:player', array('controller' => 'profile', 'action' => 'detail')),
@@ -32,5 +34,5 @@ return array(
 	'match' => new Zend_Controller_Router_Route('/match/:id', array('controller' => 'match', 'action' => 'statistic'))
 	
 
-
+	
 );

@@ -37,29 +37,25 @@ $submit = '<input type=submit class=button value="' . $this->translate('Save')  
             
         <div>      
             <p>
-                <label class=required><?php echo $this->translate('Club');?></label>
-                <?php echo $form->getElement('club_id') ?>
+                <label class=required><?php echo $this->translate('Date');?></label>
+                <?php echo $form->getElement('date') ?>
             </p>
             <p>
-                <label class=required><?php echo $this->translate('Name');?></label>
+                <label class=required><?php echo $this->translate('Player');?></label>
                 <?php echo $form->getElement('name') ?>
             </p>
-            <p>
-                <label class=required><?php echo $this->translate('Position');?></label>
-                <?php echo $form->getElement('pos') ?>
+			<p>
+                <label class=required><?php echo $this->translate('Team');?></label>
+                <?php echo $form->getElement('team') ?>
             </p>
             <p>
-                <label class=required><?php echo $this->translate('Steam ID');?></label>
-                <?php echo $form->getElement('steam_id') ?>
+                <label class=required><?php echo $this->translate('Penalty');?></label>
+                <?php echo $form->getElement('punishment') ?>
             </p>
 			<p>
-                <label class=required><?php echo $this->translate('Steam ID64');?></label>
-                <?php echo $form->getElement('steam_id64') ?>
-            </p>
-            <p>
-                <label class=required><?php echo $this->translate('Nationality');?></label>
-                <?php echo $form->getElement('nation') ?>
-            </p>
+                <label class=required><?php echo $this->translate('Reason');?></label>
+                <?php echo $form->getElement('reason') ?>
+            </p>		
             <p>
                 <?php echo $submit; ?>
             </p>   

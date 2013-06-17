@@ -10,7 +10,7 @@ class SlidesForm extends Sparx_BaseForm
         $this->addElement($element);
         
         $element = new Sparx_SimpleText('text');
-        $element->setShort();
+        $element->setMedium();
         $this->addElement($element);
         
         $element = new Sparx_SimpleText('image');

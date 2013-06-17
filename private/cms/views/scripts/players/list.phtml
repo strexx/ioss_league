@@ -10,6 +10,7 @@ $db = Zend_Registry::get('db');
                 <th><?php echo $this->translate('Team');?>
                 <th><?php echo $this->translate('Position');?>
                 <th><?php echo $this->translate('Steam ID');?>
+				<th><?php echo $this->translate('Steam ID64');?>
                 <th><?php echo $this->translate('Nationality');?>
                 <th width="90">Active
                 <th width="50">&nbsp;
@@ -30,6 +31,7 @@ $db = Zend_Registry::get('db');
                 <td><?php echo $club['club']; ?></td>
                 <td><?php echo $item['pos']; ?></td>
                 <td><?php echo $item['steam_id']; ?></td>
+				<td><?php echo $item['steam_id64']; ?></td>
                 <td><img src="../assets/img/flags/small/<?php echo $item['nation']; ?>" /></td>
                 <td><a href="<?php echo $this->url(array('action' => 'edit', 'id' => $item['id'])) ?>"><?php echo $this->translate('Update');?></a></td>
                 <td class=delete><a href="<?php echo $this->url(array('action' => 'delete', 'id' => $item['id'])) ?>"><?php echo $this->translate('Delete');?></a></td>
