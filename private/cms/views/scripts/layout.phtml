@@ -91,16 +91,24 @@ $action = $request->getActionName();
 <?php
 if($action != 'login'):
     $this->headScript()->appendFile('ckeditor/ckeditor.js')
-                       ->appendFile('ckfinder/ckfinder.js')
-                       ->appendFile('ckeditor/adapters/jquery.js');
+                       ->appendFile('tinymce/js/tinymce/tinymce.min.js');
 
     $this->headScript()->captureStart();
 
     ?>
 
-    $('.ck').each(function(){
-        var editor = CKEDITOR.replace( $(this).attr('id'),{});
-        CKFinder.setupCKEditor( editor, '<?php echo $config->baseurl;?>cms/ckfinder/' ) ;
+    tinymce.init({
+        selector: "textarea",
+        theme: "modern",
+        width: 700,
+        height: 300,
+        relative_urls : false,
+        language : "en",
+        plugins: [
+         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+         "save table contextmenu directionality emoticons template paste textcolor fullscreen"
+        ]
     });
 
     $('.date-input').datepicker({
