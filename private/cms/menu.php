@@ -2,6 +2,13 @@
 
 return array(
    
+		'user' => array(
+	    'name'  => 'Users',
+	    'items' => array(
+                'list' => 'Overview',
+                'add' => 'Add',
+	    )
+	),
    		'slides' => array(
 	    'name'  => 'Slides',
 	    'items' => array(
