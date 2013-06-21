@@ -40,7 +40,7 @@ class UserController extends CrudController
             unset($user['password_hash']);
             unset($user['password_salt']);
             
-            $user['admin'] = 1;
+            //$user['admin'] = 1;
             
             // this is needed for the file manager
             $config = Zend_Registry::get('config');

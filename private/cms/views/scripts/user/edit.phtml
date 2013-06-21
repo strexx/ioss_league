@@ -4,6 +4,7 @@ $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
 
 $this->layout()->title = $action == 'add' ? 'Voeg een gebruiker toe' : 'Wijzigen';
 
+
 $form = $this->form;
 
 ?>
@@ -28,6 +29,13 @@ $form = $this->form;
         <label>Actief</label>
         <?php echo $form->getElement('active') ?>
     </p>
+
+    <?php if( $_SESSION['cmsuser']['admin'] == 1 ): ?>
+    <p>
+        <label>Admin</label>
+        <?php echo $form->getElement('admin') ?>
+    </p>
+    <?php endif; ?>
     
     <input type=submit value=<?php echo $action == 'add' ? 'Toevoegen' : 'Wijzigen'?>>
 </form>

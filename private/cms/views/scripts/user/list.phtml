@@ -1,8 +1,5 @@
 <?php
-
 $this->layout()->title = 'Gebruikers overzicht';
-
-
 ?>
 <section class=user>
     <table>
@@ -11,6 +8,7 @@ $this->layout()->title = 'Gebruikers overzicht';
                 <th>Naam
                 <th>E-mail adres
                 <th width=50>Actief
+                <th width=50>Admin
                 <th width=50>&nbsp;
                 <th width=50>&nbsp;
             </tr>
@@ -20,12 +18,15 @@ $this->layout()->title = 'Gebruikers overzicht';
             <td><?php echo $user['first_name']?> <?php echo $user['last_name'] ?>
             <td><?php echo $user['email'] ?>
             <td><?php echo $user['active'] ? "<img src=resources/images/icons/tick_circle.png>" : '';?>
+            <td><?php echo $user['admin'] ? "<img src=resources/images/icons/tick_circle.png>" : '';?>
             <td>
                 <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $user['id'])) ?>">Wijzigen</a>
             </td>
+            <?php if( $_SESSION['cmsuser']['admin'] == 1 ): ?>
             <td class=delete>
                 <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $user['id'])) ?>">Verwijderen</a>
             </td>
+            <?php endif; ?>
         </tr>
         <?php endforeach ?>
     </table>
