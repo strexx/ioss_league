@@ -29,5 +29,9 @@ class userForm extends Sparx_BaseForm
         $active->setRequired(true);
         $this->addElement($active);
         $this->setDefault('active', true);
+
+        $active = new Sparx_SimpleCheck('admin');
+        $this->addElement($active);
+        $this->setDefault('admin', false);
     }
 }
