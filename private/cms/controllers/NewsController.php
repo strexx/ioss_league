@@ -34,10 +34,11 @@ class NewsController extends Cms {
 
             if (!$form->isValid($_POST)) break;
             
-            $data['url'] = sanitize($data['title']);
-            
             list($data) = $this->_filter($form->getValues());
 
+            // Data
+            $data['url'] = sanitize($data['title']);
+            $data['text'] = stripslashes( $data['text'] );
             $data['date_created'] = date("Y-m-d H:i:s");
 
             if ($edit)
