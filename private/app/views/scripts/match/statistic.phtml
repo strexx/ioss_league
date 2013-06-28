@@ -19,11 +19,32 @@
 							$db = Zend_Registry::get('db');
 							foreach( $this->events as $event ): 
 							$player = $db->fetchRow('SELECT * FROM players WHERE steam_id = ?', $event['steam_id']);
+
+							switch ($event['event']) {
+							    case "YELLOW CARD":
+							        $class = 'icons-yellow-card';
+							        break;
+							    case "RED CARD":
+							        $class = 'icons-red-card';
+							        break;
+							    case "SECOND YELLOW":
+							        $class = 'icons-red-card';
+							        break;
+							    case "GOAL":
+							        $class = 'icons-goal';
+							        break;
+							    case "SAVE":
+							        $class = 'icons-save';
+							        break;
+							    case "MISS":
+							        $class = 'icons-miss';
+							        break;
+							}
 						?>
 							<tr>
 								<td><?php echo $event['period']; ?></td>
 								<td><?php echo $event['minute']; ?></td>
-								<td><?php echo $event['event']; ?></td>
+								<td class="<?php echo $class; ?>">&nbsp;</td>
 								<td><?php echo $player['name']; ?></td>
 							</tr>
 

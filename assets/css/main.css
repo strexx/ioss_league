@@ -748,3 +748,35 @@ html[xmlns] .clearfix {
 	.buttons {
 		margin: 0 0 40px 0;
 	}
+
+    /* ICONS */
+
+    .icons-yellow-card {
+        background: #000 url('../img/soccer-sprite.png') no-repeat;
+        height: 18px;
+        width: 18px;
+    }
+
+    .icons-red-card {
+        background: #000 url('../img/soccer-sprite.png') no-repeat 50px 100px;
+        height: 18px;
+        width: 18px;
+    }
+
+    .icons-goal {
+        background: #000 url('../img/soccer-sprite.png') no-repeat 50px 100px;
+        height: 18px;
+        width: 18px;
+    }
+
+    .icons-save {
+        background: #000 url('../img/soccer-sprite.png') no-repeat 50px 100px;
+        height: 18px;
+        width: 18px;
+    }
+
+    .icons-miss {
+        background: #000 url('../img/soccer-sprite.png') no-repeat 50px 100px;
+        height: 18px;
+        width: 18px;
+    }
