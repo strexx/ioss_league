@@ -36,15 +36,14 @@ class NewsController extends Cms {
             
             list($data) = $this->_filter($form->getValues());
 
-            // Data
             $data['url'] = sanitize($data['title']);
+
             $data['text'] = stripslashes( $data['text'] );
-            $data['date_created'] = date("Y-m-d H:i:s");
 
             if ($edit)
                 $this->_merge($news, $data);
             else {
-                //$data['date_created'] = date('Y-m-d');
+                $data['date_created'] = date('Y-m-d H:i:s');
                 $news = $this->_add($data);
             }
 
